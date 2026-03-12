@@ -1,4 +1,5 @@
-export const metadata = {
+import type { Metadata } from "next";
+export const metadata: Metadata = {
   title: "A2P Messaging Policy | Copperstone Executive Suites",
 };
 

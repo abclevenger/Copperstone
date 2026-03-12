@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Contact Copperstone Executive Suites – Land O' Lakes & South Tampa",
   description:
     "Contact Copperstone Executive Suites to schedule a tour or ask about office and meeting space availability in Land O' Lakes and South Tampa, Florida.",

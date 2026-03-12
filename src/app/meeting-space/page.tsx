@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Meeting Space & Conference Rooms in Land O' Lakes, FL",
   description:
     "Reserve professional conference rooms, meeting rooms, and event space in Land O' Lakes and South Tampa. Ideal for presentations, trainings, and workshops.",

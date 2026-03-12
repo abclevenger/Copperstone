@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Office Space in Land O' Lakes, FL – Copperstone Executive Suites",
   description:
     "Executive suites, coworking, virtual offices, and meeting space in Land O' Lakes, FL. Located at 3632 Land O' Lakes Blvd #105, minutes from Wesley Chapel, Zephyrhills, and Lutz. Call (813) 298-7363.",

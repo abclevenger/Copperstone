@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Office Space in South Tampa, FL – Copperstone Executive Suites",
   description:
     "Executive suites, coworking, virtual offices, and meeting space in South Tampa, FL. Located at 1001 S MacDill Ave, near Hyde Park, Palma Ceia, and Downtown Tampa. Call (813) 906-8444.",

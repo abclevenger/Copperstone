@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Executive Suites for Rent in Land O' Lakes & South Tampa",
   description:
     "Private, lockable executive suites with lobby reception, professional presence, and flexible lease terms in Land O' Lakes and South Tampa, FL.",

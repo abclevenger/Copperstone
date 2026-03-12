@@ -1,4 +1,5 @@
-export const metadata = {
+import type { Metadata } from "next";
+export const metadata: Metadata = {
   title: "FAQs – Office & Meeting Space in Land O' Lakes & South Tampa",
   description:
     "Answers to common questions about executive suites, coworking, virtual offices, and meeting space at Copperstone Executive Suites in Land O' Lakes and South Tampa, FL.",
