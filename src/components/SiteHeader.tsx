@@ -1,0 +1,82 @@
+import Link from "next/link";
+import Image from "next/image";
+
+const PHONE_LAND_O_LAKES = "(813) 298-7363";
+const PHONE_SOUTH_TAMPA = "(813) 906-8444";
+
+const PhoneIcon = () => (
+  <svg className="h-3 w-3 shrink-0 text-[#c47a3a]" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+  </svg>
+);
+
+export default function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      {/* Top info bar */}
+      <div className="border-b border-slate-100 bg-[#f7f6f3]">
+        <div className="mx-auto flex max-w-6xl items-center justify-center px-6 py-2 lg:justify-end lg:px-10">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-[13px] text-slate-600 lg:justify-end">
+            <a
+              href={`tel:${PHONE_LAND_O_LAKES}`}
+              className="flex items-center gap-1.5 transition hover:text-[#c47a3a]"
+            >
+              <PhoneIcon />
+              <span className="font-medium text-slate-700">Land O&apos; Lakes:</span>
+              <span className="font-semibold text-[#c47a3a]">{PHONE_LAND_O_LAKES}</span>
+            </a>
+            <a
+              href={`tel:${PHONE_SOUTH_TAMPA}`}
+              className="flex items-center gap-1.5 transition hover:text-[#c47a3a]"
+            >
+              <PhoneIcon />
+              <span className="font-medium text-slate-700">South Tampa:</span>
+              <span className="font-semibold text-[#c47a3a]">{PHONE_SOUTH_TAMPA}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main navbar */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-10">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/copperstone-logo.png"
+            alt="Copperstone Executive Suites"
+            width={160}
+            height={46}
+            className="h-9 w-auto drop-shadow-sm"
+            priority
+          />
+          <div className="hidden flex-col leading-tight sm:flex">
+            <span className="text-sm font-semibold tracking-wide text-slate-900">
+              Copperstone Executive Suites
+            </span>
+            <span className="text-xs text-slate-500">Office &amp; Meeting Space</span>
+          </div>
+        </Link>
+
+        <nav className="hidden items-center gap-7 text-[13px] font-medium text-slate-700 md:flex">
+          <Link href="/office-space-for-rent" className="transition hover:text-[#c47a3a]">
+            Office Space
+          </Link>
+          <Link href="/meeting-space" className="transition hover:text-[#c47a3a]">
+            Meeting Space
+          </Link>
+          <Link href="/faqs" className="transition hover:text-[#c47a3a]">
+            FAQs
+          </Link>
+          <Link href="/contact" className="transition hover:text-[#c47a3a]">
+            Contact
+          </Link>
+          <Link
+            href="/#contact"
+            className="rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-2 text-[13px] font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
+          >
+            Schedule a Tour
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
