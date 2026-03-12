@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import DeferredChatWidget from "@/components/DeferredChatWidget";
 import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
 
@@ -62,12 +62,7 @@ export default function RootLayout({
       >
         <SiteHeader />
         {children}
-        <Script
-          src="https://beta.leadconnectorhq.com/loader.js"
-          data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="69b2ed9e6053f690a3de824b"
-          strategy="afterInteractive"
-        />
+        <DeferredChatWidget />
       </body>
     </html>
   );

@@ -1,8 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 const PHONE_LAND_O_LAKES = "(813) 298-7363";
 const PHONE_SOUTH_TAMPA = "(813) 906-8444";
+const NAV_LINKS = [
+  { href: "/office-space-for-rent", label: "Office Space" },
+  { href: "/meeting-space", label: "Meeting Space" },
+  { href: "/faqs", label: "FAQs" },
+  { href: "/contact", label: "Contact" },
+];
 
 const PhoneIcon = () => (
   <svg className="h-3 w-3 shrink-0 text-[#c47a3a]" fill="currentColor" viewBox="0 0 20 20">
@@ -11,6 +20,8 @@ const PhoneIcon = () => (
 );
 
 export default function SiteHeader() {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
       {/* Top info bar */}
@@ -47,6 +58,7 @@ export default function SiteHeader() {
             height={46}
             className="h-9 w-auto drop-shadow-sm"
             priority
+            sizes="160px"
           />
           <div className="hidden flex-col leading-tight sm:flex">
             <span className="text-sm font-semibold tracking-wide text-slate-900">
@@ -57,18 +69,11 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-7 text-[13px] font-medium text-slate-700 md:flex">
-          <Link href="/office-space-for-rent" className="transition hover:text-[#c47a3a]">
-            Office Space
-          </Link>
-          <Link href="/meeting-space" className="transition hover:text-[#c47a3a]">
-            Meeting Space
-          </Link>
-          <Link href="/faqs" className="transition hover:text-[#c47a3a]">
-            FAQs
-          </Link>
-          <Link href="/contact" className="transition hover:text-[#c47a3a]">
-            Contact
-          </Link>
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="transition hover:text-[#c47a3a]">
+              {link.label}
+            </Link>
+          ))}
           <Link
             href="/#contact"
             className="rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-2 text-[13px] font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
@@ -76,7 +81,46 @@ export default function SiteHeader() {
             Schedule a Tour
           </Link>
         </nav>
+
+        <button
+          type="button"
+          className="inline-flex items-center rounded-full border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 md:hidden"
+          aria-label="Open navigation menu"
+          aria-expanded={isMobileNavOpen}
+          aria-controls="mobile-nav"
+          onClick={() => setIsMobileNavOpen((prev) => !prev)}
+        >
+          {isMobileNavOpen ? "Close" : "Menu"}
+        </button>
       </div>
+
+      {isMobileNavOpen && (
+        <nav
+          id="mobile-nav"
+          className="border-t border-slate-200 bg-white px-6 py-4 md:hidden"
+          aria-label="Mobile navigation"
+        >
+          <div className="flex flex-col gap-3 text-sm font-medium text-slate-700">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-2 py-1.5 transition hover:bg-slate-50 hover:text-[#c47a3a]"
+                onClick={() => setIsMobileNavOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/#contact"
+              className="mt-1 inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-2 text-sm font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
+              onClick={() => setIsMobileNavOpen(false)}
+            >
+              Schedule a Tour
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
