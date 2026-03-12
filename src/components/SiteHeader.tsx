@@ -7,6 +7,7 @@ import { useState } from "react";
 const PHONE_LAND_O_LAKES = "(813) 298-7363";
 const PHONE_SOUTH_TAMPA = "(813) 906-8444";
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/office-space-for-rent", label: "Office Space" },
   { href: "/meeting-space", label: "Meeting Space" },
   { href: "/faqs", label: "FAQs" },
@@ -52,13 +53,13 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-10">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/copperstone-logo.png"
+            src="/logo trans.svg"
             alt="Copperstone Executive Suites"
-            width={160}
-            height={46}
-            className="h-10 w-auto drop-shadow-sm md:h-11"
+            width={180}
+            height={48}
+            className="h-10 w-auto md:h-11"
             priority
-            sizes="160px"
+            sizes="(max-width: 768px) 160px, 180px"
           />
           <div className="hidden flex-col leading-tight sm:flex">
             <span className="text-sm font-semibold tracking-wide text-slate-900">
