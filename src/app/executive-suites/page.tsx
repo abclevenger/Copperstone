@@ -1,7 +1,17 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "Executive Suites | Copperstone Executive Suites",
+  title: "Executive Suites for Rent in Land O' Lakes & South Tampa",
+  description:
+    "Private, lockable executive suites with lobby reception, professional presence, and flexible lease terms in Land O' Lakes and South Tampa, FL.",
+  alternates: { canonical: "https://copperstone.info/executive-suites" },
+  openGraph: {
+    title: "Executive Suites | Copperstone Executive Suites",
+    description:
+      "Private, lockable executive suites with lobby reception and flexible lease terms in Land O' Lakes and South Tampa, FL.",
+    url: "https://copperstone.info/executive-suites",
+    images: [{ url: "/Executive-Offices-for-Rent-Land-O-Lakes.jpg", width: 1200, height: 630 }],
+  },
 };
 
 const accent = "#c47a3a";
@@ -9,7 +19,7 @@ const accent = "#c47a3a";
 export default function ExecutiveSuitesPage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10 lg:px-0 lg:py-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--accent,var(--color-pink-300))" style={{ ["--accent" as string]: accent }}>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]" style={{ ["--accent" as string]: accent }}>
         Executive Suites
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">

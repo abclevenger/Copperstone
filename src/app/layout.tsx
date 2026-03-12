@@ -15,9 +15,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Copperstone Executive Suites | Office & Meeting Space in Land O' Lakes & South Tampa",
+  metadataBase: new URL("https://copperstone.info"),
+  title: {
+    default: "Copperstone Executive Suites | Office & Meeting Space in Land O' Lakes & South Tampa",
+    template: "%s | Copperstone Executive Suites",
+  },
   description:
     "Professional executive suites, coworking, virtual offices, and meeting space in Land O' Lakes and South Tampa. Grow your business with Copperstone Executive Suites.",
+  openGraph: {
+    siteName: "Copperstone Executive Suites",
+    type: "website",
+    locale: "en_US",
+    url: "https://copperstone.info",
+    title: "Copperstone Executive Suites | Office & Meeting Space in Land O' Lakes & South Tampa",
+    description:
+      "Professional executive suites, coworking, virtual offices, and meeting space in Land O' Lakes and South Tampa.",
+    images: [{ url: "/Executive-Offices-for-Rent-Land-O-Lakes.jpg", width: 1200, height: 630, alt: "Copperstone Executive Suites" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Copperstone Executive Suites | Office & Meeting Space",
+    description:
+      "Professional executive suites, coworking, virtual offices, and meeting space in Land O' Lakes and South Tampa.",
+    images: ["/Executive-Offices-for-Rent-Land-O-Lakes.jpg"],
+  },
+  alternates: {
+    canonical: "https://copperstone.info",
+  },
 };
 
 export default function RootLayout({

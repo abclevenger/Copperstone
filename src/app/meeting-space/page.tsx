@@ -1,7 +1,17 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "Meeting Space | Copperstone Executive Suites",
+  title: "Meeting Space & Conference Rooms in Land O' Lakes, FL",
+  description:
+    "Reserve professional conference rooms, meeting rooms, and event space in Land O' Lakes and South Tampa. Ideal for presentations, trainings, and workshops.",
+  alternates: { canonical: "https://copperstone.info/meeting-space" },
+  openGraph: {
+    title: "Meeting Space & Conference Rooms | Copperstone Executive Suites",
+    description:
+      "Reserve professional conference rooms and event space in Land O' Lakes and South Tampa, FL.",
+    url: "https://copperstone.info/meeting-space",
+    images: [{ url: "/conference-room-land-o-lakes.jpg", width: 1200, height: 630 }],
+  },
 };
 
 const accent = "#c47a3a";
@@ -9,7 +19,7 @@ const accent = "#c47a3a";
 export default function MeetingSpacePage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10 lg:px-0 lg:py-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--accent,var(--color-pink-300))" style={{ ["--accent" as string]: accent }}>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]" style={{ ["--accent" as string]: accent }}>
         Meeting Space
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
@@ -22,19 +32,19 @@ export default function MeetingSpacePage() {
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm">
           <Image
-            src="/conference-room-land-o-lakes-2.jpg"
-            alt="Conference room at Copperstone Executive Suites"
+            src="/conference-room-land-o-lakes.jpg"
+            alt="Conference room at Copperstone Executive Suites Land O' Lakes"
             width={600}
-            height={362}
+            height={400}
             className="h-full w-full object-cover"
           />
         </div>
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm">
           <Image
-            src="/event-venue-land-o-lakes-2.jpg"
-            alt="Event venue at Copperstone Executive Suites"
+            src="/Conference-Rooms-Land-O-Lakes.jpg"
+            alt="Meeting room at Copperstone Executive Suites Land O' Lakes"
             width={600}
-            height={362}
+            height={400}
             className="h-full w-full object-cover"
           />
         </div>

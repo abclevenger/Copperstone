@@ -1,5 +1,14 @@
 export const metadata = {
-  title: "Frequently Asked Questions | Copperstone Executive Suites",
+  title: "FAQs – Office & Meeting Space in Land O' Lakes & South Tampa",
+  description:
+    "Answers to common questions about executive suites, coworking, virtual offices, and meeting space at Copperstone Executive Suites in Land O' Lakes and South Tampa, FL.",
+  alternates: { canonical: "https://copperstone.info/faqs" },
+  openGraph: {
+    title: "FAQs | Copperstone Executive Suites",
+    description:
+      "Common questions about office space, meeting rooms, coworking, and virtual offices at Copperstone Executive Suites.",
+    url: "https://copperstone.info/faqs",
+  },
 };
 
 const accent = "#c47a3a";
@@ -57,10 +66,24 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 export default function FAQsPage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10 lg:px-0 lg:py-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--accent,var(--color-pink-300))" style={{ ["--accent" as string]: accent }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]" style={{ ["--accent" as string]: accent }}>
         FAQs
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">

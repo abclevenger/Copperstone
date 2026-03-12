@@ -63,11 +63,80 @@ const locations = [
   },
 ];
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Copperstone Executive Suites",
+  url: "https://copperstone.info",
+  logo: "https://copperstone.info/copperstone-logo.png",
+  image: "https://copperstone.info/Executive-Offices-for-Rent-Land-O-Lakes.jpg",
+  description:
+    "Professional executive suites, coworking, virtual offices, and meeting space in Land O' Lakes and South Tampa, Florida.",
+  priceRange: "$$",
+  telephone: "+18132987363",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "3632 Land O' Lakes Blvd #105",
+    addressLocality: "Land O Lakes",
+    addressRegion: "FL",
+    postalCode: "34639",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 28.2025,
+    longitude: -82.4635,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+  ],
+  hasMap: "https://maps.google.com/?q=3632+Land+O+Lakes+Blvd+%23105+Land+O+Lakes+FL",
+  sameAs: ["https://www.facebook.com/copperstoneexecutivesuites"],
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-10 lg:py-5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+        {/* Top info bar */}
+        <div className="border-b border-slate-100 bg-[#f7f6f3]">
+          <div className="mx-auto flex max-w-6xl items-center justify-center px-6 py-2 lg:justify-end lg:px-10">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-[13px] text-slate-600 lg:justify-end">
+              <a
+                href={`tel:${PHONE_LAND_O_LAKES}`}
+                className="flex items-center gap-1.5 transition hover:text-[#c47a3a]"
+              >
+                <svg className="h-3 w-3 shrink-0 text-[#c47a3a]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                <span className="font-medium text-slate-700">Land O&apos; Lakes:</span>
+                <span className="font-semibold text-[#c47a3a]">{PHONE_LAND_O_LAKES}</span>
+              </a>
+              <a
+                href={`tel:${PHONE_SOUTH_TAMPA}`}
+                className="flex items-center gap-1.5 transition hover:text-[#c47a3a]"
+              >
+                <svg className="h-3 w-3 shrink-0 text-[#c47a3a]" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                <span className="font-medium text-slate-700">South Tampa:</span>
+                <span className="font-semibold text-[#c47a3a]">{PHONE_SOUTH_TAMPA}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Main navbar */}
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-10">
           <div className="flex items-center gap-3">
             <Image
               src="/copperstone-logo.png"
@@ -81,47 +150,32 @@ export default function Home() {
               <span className="text-sm font-semibold tracking-wide text-slate-900">
                 Copperstone Executive Suites
               </span>
-              <span className="text-xs text-slate-600">
+              <span className="text-xs text-slate-500">
                 Office &amp; Meeting Space
               </span>
             </div>
           </div>
-          <nav className="hidden items-center gap-6 text-xs font-medium text-slate-700 md:ml-6 md:flex">
-            <Link href="/office-space-for-rent" className="hover:text-[#c47a3a]">
+
+          <nav className="hidden items-center gap-7 text-[13px] font-medium text-slate-700 md:flex">
+            <Link href="/office-space-for-rent" className="transition hover:text-[#c47a3a]">
               Office Space
             </Link>
-            <Link href="/meeting-space" className="hover:text-[#c47a3a]">
+            <Link href="/meeting-space" className="transition hover:text-[#c47a3a]">
               Meeting Space
             </Link>
-            <Link href="/faqs" className="hover:text-[#c47a3a]">
+            <Link href="/faqs" className="transition hover:text-[#c47a3a]">
               FAQs
             </Link>
-            <Link href="/contact" className="hover:text-[#c47a3a]">
+            <Link href="/contact" className="transition hover:text-[#c47a3a]">
               Contact
             </Link>
-          </nav>
-          <div className="hidden flex-1 items-center justify-center gap-3 text-xs font-medium text-slate-600 lg:ml-8 lg:flex">
-            <a
-              href={`tel:${PHONE_LAND_O_LAKES}`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-center text-[0.7rem] font-semibold text-slate-800 shadow-sm transition hover:border-[#c47a3a] hover:text-[#8a4f3d]"
-            >
-              <span className="block">Land O&apos; Lakes</span>
-              <span className="block text-[0.68rem] font-normal">813-298-7363</span>
-            </a>
-            <a
-              href={`tel:${PHONE_SOUTH_TAMPA}`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-3 py-1.5 text-center text-[0.7rem] font-semibold text-slate-800 shadow-sm transition hover:border-[#c47a3a] hover:text-[#8a4f3d]"
-            >
-              <span className="block">South Tampa</span>
-              <span className="block text-[0.68rem] font-normal">813-906-8444</span>
-            </a>
             <Link
               href="#contact"
-              className="rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-2 text-center text-xs font-semibold text-white shadow-md shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24]"
+              className="rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-2 text-[13px] font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
             >
               Schedule a Tour
             </Link>
-          </div>
+          </nav>
         </div>
       </header>
 
