@@ -40,6 +40,11 @@ export const metadata: Metadata = {
       "Professional executive suites, coworking, virtual offices, and meeting space in Land O' Lakes and South Tampa.",
     images: ["/Executive-Offices-for-Rent-Land-O-Lakes.jpg"],
   },
+  icons: {
+    icon: "/favicon-copperstone.png",
+    shortcut: "/favicon-copperstone.png",
+    apple: "/favicon-copperstone.png",
+  },
   alternates: {
     canonical: "https://copperstone.info",
   },

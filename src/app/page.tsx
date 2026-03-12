@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
+import GHLInlineForm from "@/components/GHLInlineForm";
 
 const PHONE_LAND_O_LAKES = "(813) 298-7363";
 const PHONE_SOUTH_TAMPA = "(813) 906-8444";
@@ -443,72 +443,39 @@ export default function Home() {
         </section>
 
         {/* Contact / Schedule Tour */}
-        <section id="contact" className="mt-16 lg:mt-20">
-          {/* Section header */}
-          <div className="mx-auto mb-8 max-w-xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-              Schedule a Tour
-            </p>
-            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-              Take the first step toward a more productive workday.
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              Share a few details and we&apos;ll reach out to confirm your tour time and help you
-              explore the right office or meeting space for your needs.
-            </p>
-            <div className="mt-3 flex flex-col items-center gap-1 text-xs text-slate-600 sm:flex-row sm:justify-center sm:gap-6">
-              <p>
-                <span className="font-semibold text-slate-900">Land O&apos; Lakes:</span>{" "}
-                <a href={`tel:${PHONE_LAND_O_LAKES}`} className="font-semibold text-[#a0621e] underline underline-offset-2">
-                  {PHONE_LAND_O_LAKES}
-                </a>
-              </p>
-              <p>
-                <span className="font-semibold text-slate-900">South Tampa:</span>{" "}
-                <a href={`tel:${PHONE_SOUTH_TAMPA}`} className="font-semibold text-[#a0621e] underline underline-offset-2">
-                  {PHONE_SOUTH_TAMPA}
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Inline form card */}
-          <div className="mx-auto w-full max-w-2xl">
-            <div
-              className="overflow-hidden rounded-3xl bg-[#f7f7f5] p-5 shadow-[0_12px_32px_rgba(0,0,0,0.08)]"
-            >
-              <iframe
-                src="https://link.ymbs.pro/widget/form/Hz1XrvShy4h58mWWzy2n"
-                id="inline-Hz1XrvShy4h58mWWzy2n"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Form 0"
-                data-height="978"
-                data-layout-iframe-id="inline-Hz1XrvShy4h58mWWzy2n"
-                data-form-id="Hz1XrvShy4h58mWWzy2n"
-                title="Schedule a Tour"
-                loading="lazy"
-                style={{
-                  width: "100%",
-                  minHeight: "978px",
-                  border: "none",
-                  borderRadius: "16px",
-                  display: "block",
-                  background: "transparent",
-                }}
-              />
+        <section id="contact" className="mt-12 lg:mt-16">
+          <div className="form-section">
+            <div className="form-layout">
+              <div className="form-copy">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                  Schedule a Tour
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+                  Take the first step toward a more productive workday.
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+                  Share a few details and we&apos;ll reach out to confirm your tour time and help you
+                  explore the right office or meeting space for your needs.
+                </p>
+                <div className="mt-4 flex flex-col gap-2 text-xs text-slate-600 sm:text-sm">
+                  <p>
+                    <span className="font-semibold text-slate-900">Land O&apos; Lakes:</span>{" "}
+                    <a href={`tel:${PHONE_LAND_O_LAKES}`} className="font-semibold text-[#a0621e] underline underline-offset-2">
+                      {PHONE_LAND_O_LAKES}
+                    </a>
+                  </p>
+                  <p>
+                    <span className="font-semibold text-slate-900">South Tampa:</span>{" "}
+                    <a href={`tel:${PHONE_SOUTH_TAMPA}`} className="font-semibold text-[#a0621e] underline underline-offset-2">
+                      {PHONE_SOUTH_TAMPA}
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <GHLInlineForm />
             </div>
           </div>
         </section>
-        <Script
-          src="https://link.ymbs.pro/js/form_embed.js"
-          strategy="afterInteractive"
-        />
 
         {/* Chambers */}
         <section className="mt-14 flex flex-col items-center gap-4 text-center">
