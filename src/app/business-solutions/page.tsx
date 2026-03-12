@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import StartupChecklist from "@/components/StartupChecklist";
 import {
   benefits,
   coreServices,
@@ -276,6 +277,12 @@ export default function BusinessSolutionsPage() {
             >
               Explore Solutions
             </a>
+            <a
+              href="#startup-checklist"
+              className="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white/60 px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition hover:border-[#c47a3a] hover:text-[#8a4f3d] hover:shadow-md sm:w-auto"
+            >
+              Startup Checklist
+            </a>
           </div>
         </section>
 
@@ -456,6 +463,9 @@ export default function BusinessSolutionsPage() {
             ))}
           </div>
         </section>
+
+        {/* ── Business Startup Checklist ── */}
+        <StartupChecklist />
 
         {/* ── How It Works: 3 Steps ── */}
         <section className="mt-16 lg:mt-20">
