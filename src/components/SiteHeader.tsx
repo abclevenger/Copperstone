@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { trackPhoneTap, trackCTAClick, trackNavClick } from "@/lib/analytics";
 
 const PHONE_LAND_O_LAKES = "(813) 298-7363";
 const PHONE_SOUTH_TAMPA = "(813) 906-8444";
@@ -32,6 +33,7 @@ export default function SiteHeader() {
             <a
               href={`tel:${PHONE_LAND_O_LAKES}`}
               className="flex items-center gap-1.5 transition hover:text-[#c47a3a]"
+              onClick={() => trackPhoneTap("Land O Lakes")}
             >
               <PhoneIcon />
               <span className="font-medium text-slate-700">Land O&apos; Lakes:</span>
@@ -40,6 +42,7 @@ export default function SiteHeader() {
             <a
               href={`tel:${PHONE_SOUTH_TAMPA}`}
               className="flex items-center gap-1.5 transition hover:text-[#c47a3a]"
+              onClick={() => trackPhoneTap("South Tampa")}
             >
               <PhoneIcon />
               <span className="font-medium text-slate-700">South Tampa:</span>
@@ -55,11 +58,11 @@ export default function SiteHeader() {
           <Image
             src="/logo trans.svg"
             alt="Copperstone Executive Suites"
-            width={180}
-            height={48}
-            className="h-10 w-auto md:h-11"
+            width={200}
+            height={54}
+            className="h-11 w-auto md:h-12"
             priority
-            sizes="(max-width: 768px) 160px, 180px"
+            sizes="(max-width: 768px) 180px, 200px"
           />
           <div className="hidden flex-col leading-tight sm:flex">
             <span className="text-sm font-semibold tracking-wide text-slate-900">
@@ -71,13 +74,19 @@ export default function SiteHeader() {
 
         <nav className="hidden items-center gap-7 text-[13px] font-medium text-slate-700 md:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="transition hover:text-[#c47a3a]">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="transition hover:text-[#c47a3a]"
+              onClick={() => trackNavClick(link.label)}
+            >
               {link.label}
             </Link>
           ))}
           <Link
             href="/#contact"
             className="rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-2 text-[13px] font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
+            onClick={() => trackCTAClick("header_schedule_tour")}
           >
             Schedule a Tour
           </Link>

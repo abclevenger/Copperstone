@@ -3,6 +3,9 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import DeferredChatWidget from "@/components/DeferredChatWidget";
 import SiteHeader from "@/components/SiteHeader";
+import BackToTop from "@/components/BackToTop";
+import CookieConsent from "@/components/CookieConsent";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,6 +52,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://copperstone.info",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -73,8 +77,18 @@ export default function RootLayout({
             gtag('config', 'G-3RV4C1HD8N');
           `}
         </Script>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-lg focus:bg-[#c47a3a] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+        >
+          Skip to main content
+        </a>
         <SiteHeader />
-        {children}
+        <PageTransition>
+          <div id="main-content">{children}</div>
+        </PageTransition>
+        <BackToTop />
+        <CookieConsent />
         <DeferredChatWidget />
       </body>
     </html>

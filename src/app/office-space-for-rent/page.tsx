@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Office Space for Rent in Land O' Lakes & South Tampa",
@@ -15,12 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
-const accent = "#c47a3a";
-
 export default function OfficeSpacePage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10 lg:px-0 lg:py-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]" style={{ ["--accent" as string]: accent }}>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Office Space" }]} />
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]">
         Office Space
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">

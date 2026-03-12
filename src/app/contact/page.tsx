@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Contact Copperstone Executive Suites – Land O' Lakes & South Tampa",
@@ -14,12 +15,11 @@ export const metadata: Metadata = {
   },
 };
 
-const accent = "#c47a3a";
-
 export default function ContactPage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10 lg:px-0 lg:py-16">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]" style={{ ["--accent" as string]: accent }}>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]">
         Contact
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">

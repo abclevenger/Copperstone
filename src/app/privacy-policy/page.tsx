@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
 export const metadata: Metadata = {
   title: "Privacy Policy | Copperstone Executive Suites",
 };
@@ -6,6 +8,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-10 lg:px-0 lg:py-16">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]} />
       <h1 className="text-3xl font-semibold tracking-tight text-slate-900">
         Privacy Policy
       </h1>

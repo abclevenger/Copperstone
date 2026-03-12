@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Office Space in South Tampa, FL – Copperstone Executive Suites",
@@ -58,6 +59,7 @@ export default function SouthTampaContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contact", href: "/contact" }, { label: "South Tampa" }]} />
 
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]">
         South Tampa, FL

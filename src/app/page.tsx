@@ -7,9 +7,11 @@ import HeroSection from "@/components/home/HeroSection";
 import InvestmentSection from "@/components/home/InvestmentSection";
 import LazyRender from "@/components/home/LazyRender";
 import OfferingsSection from "@/components/home/OfferingsSection";
+import PricingSection from "@/components/home/PricingSection";
 import SiteFooter from "@/components/home/SiteFooter";
 import StakesSection from "@/components/home/StakesSection";
 import StepsSection from "@/components/home/StepsSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import {
   amenities,
   localBusinessSchema,
@@ -35,8 +37,12 @@ export default function Home() {
         <StakesSection />
         <StepsSection steps={steps} />
         <OfferingsSection offerings={offerings} />
+        <PricingSection />
         <InvestmentSection />
         <BuyerFitSection />
+        <LazyRender rootMargin="450px 0px" minHeightClassName="min-h-[400px]">
+          <TestimonialsSection />
+        </LazyRender>
         <AmenitiesLocationsSection amenities={amenities} locations={locations} />
         <LazyRender rootMargin="450px 0px" minHeightClassName="min-h-[520px]">
           <GallerySection />
@@ -46,8 +52,8 @@ export default function Home() {
           phoneSouthTampa={PHONE_SOUTH_TAMPA}
         />
         <ChambersSection />
-        <SiteFooter />
       </main>
+      <SiteFooter />
       {/* Mobile sticky CTA */}
       <div className="fixed inset-x-4 bottom-4 z-40 flex items-center justify-between gap-3 rounded-full border border-[#c47a3a] bg-white/95 px-4 py-2 text-[0.7rem] shadow-lg shadow-[#a35f24]/30 lg:hidden">
         <a

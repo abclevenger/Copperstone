@@ -141,4 +141,10 @@ export const localBusinessSchema = {
   ],
   hasMap: "https://maps.google.com/?q=3632+Land+O+Lakes+Blvd+%23105+Land+O+Lakes+FL",
   sameAs: ["https://www.facebook.com/copperstoneexecutivesuites"],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "47",
+    bestRating: "5",
+  },
 };

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
 export const metadata: Metadata = {
   title: "FAQs – Office & Meeting Space in Land O' Lakes & South Tampa",
   description:
@@ -11,8 +13,6 @@ export const metadata: Metadata = {
     url: "https://copperstone.info/faqs",
   },
 };
-
-const accent = "#c47a3a";
 
 const faqs = [
   {
@@ -84,7 +84,8 @@ export default function FAQsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]" style={{ ["--accent" as string]: accent }}>
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "FAQs" }]} />
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c47a3a]">
         FAQs
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">

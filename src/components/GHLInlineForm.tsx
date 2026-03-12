@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import { trackFormView } from "@/lib/analytics";
 
 const FORM_SRC = "https://link.ymbs.pro/widget/form/Hz1XrvShy4h58mWWzy2n";
 
@@ -17,6 +18,7 @@ export default function GHLInlineForm() {
       (entries) => {
         if (entries[0]?.isIntersecting) {
           setIsVisible(true);
+          trackFormView();
           observer.disconnect();
         }
       },
