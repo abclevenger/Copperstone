@@ -32,7 +32,7 @@ export default function ExecutiveSuitesPage() {
 
       <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm">
         <Image
-          src="/executive-offices-land-o-lakes.jpg"
+          src="/Executive-Offices-for-Rent-Land-O-Lakes.jpg"
           alt="Executive office suite at Copperstone Executive Suites"
           width={1024}
           height={506}

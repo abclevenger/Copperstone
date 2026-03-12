@@ -237,7 +237,7 @@ export default function Home() {
             </div>
             <div className="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-md">
               <Image
-                src="/land-o-lakes-office.jpg"
+                src="/office-space-land-o-lakes.jpg"
                 alt="Copperstone Executive Suites Land O' Lakes office exterior"
                 width={900}
                 height={500}
@@ -405,7 +405,7 @@ export default function Home() {
             </figure>
             <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
               <Image
-                src="/event-venue-land-o-lakes.jpg"
+                src="/Event-Venue-Land-O-Lakes.jpg"
                 alt="Event venue setup at Copperstone Executive Suites in Land O' Lakes"
                 width={500}
                 height={350}
@@ -423,7 +423,7 @@ export default function Home() {
             </figure>
             <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
               <Image
-                src="/Conference-Rooms-Land-O-Lakes.JPG"
+                src="/Conference-Rooms-Land-O-Lakes.jpg"
                 alt="Conference room at Copperstone Executive Suites in Land O' Lakes"
                 width={500}
                 height={350}
@@ -432,7 +432,7 @@ export default function Home() {
             </figure>
             <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
               <Image
-                src="/Contact-Copperstone-Executive-Suites-Land-O-Lakes.JPG"
+                src="/Contact-Copperstone-Executive-Suites-Land-O-Lakes.jpg"
                 alt="Copperstone Executive Suites Land O' Lakes exterior"
                 width={500}
                 height={350}
