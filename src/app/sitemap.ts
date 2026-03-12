@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/executive-suites`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/meeting-space`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/business-solutions`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/training`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.8 },
     { url: `${BASE}/contact/land-o-lakes`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
     { url: `${BASE}/contact/south-tampa-office-space`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },

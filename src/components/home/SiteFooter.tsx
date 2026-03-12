@@ -8,6 +8,7 @@ const quickLinks = [
   { href: "/office-space-for-rent", label: "Office Space" },
   { href: "/meeting-space", label: "Meeting Space" },
   { href: "/business-solutions", label: "Business Solutions" },
+  { href: "/training", label: "Training & Classes" },
   { href: "/executive-suites", label: "Executive Suites" },
   { href: "/faqs", label: "FAQs" },
   { href: "/contact", label: "Contact" },
