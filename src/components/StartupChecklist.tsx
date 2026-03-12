@@ -176,11 +176,17 @@ function CheckIcon({ className }: { className?: string }) {
   );
 }
 
+const GHL_WEBHOOK =
+  "https://services.leadconnectorhq.com/hooks/mNr3aCm0bvD70r49HVTH/webhook-trigger/73c93ad0-2ad1-45f4-aff5-af3311c36646";
+
 export default function StartupChecklist() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const toggle = (id: string) => {
     setSelected((prev) => {
@@ -191,10 +197,36 @@ export default function StartupChecklist() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitting(true);
+    setError(false);
     trackCTAClick("startup_checklist_inquiry");
-    setSubmitted(true);
+
+    const interests = interestOptions
+      .filter((o) => selected.has(o.id))
+      .map((o) => o.label)
+      .join(", ");
+
+    try {
+      await fetch(GHL_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          interests,
+          source: "Copperstone Business Solutions – Startup Checklist",
+          page_url: typeof window !== "undefined" ? window.location.href : "",
+        }),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -319,7 +351,7 @@ export default function StartupChecklist() {
               })}
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div>
                 <label
                   htmlFor="checklist-name"
@@ -354,6 +386,22 @@ export default function StartupChecklist() {
                   placeholder="you@company.com"
                 />
               </div>
+              <div>
+                <label
+                  htmlFor="checklist-phone"
+                  className="block text-xs font-medium text-slate-700"
+                >
+                  Phone
+                </label>
+                <input
+                  id="checklist-phone"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                  placeholder="(555) 123-4567"
+                />
+              </div>
             </div>
 
             {selected.size > 0 && (
@@ -366,13 +414,23 @@ export default function StartupChecklist() {
               </p>
             )}
 
+            {error && (
+              <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700">
+                Something went wrong. Please try again or{" "}
+                <Link href="/contact" className="font-semibold underline underline-offset-2">
+                  contact us directly
+                </Link>
+                .
+              </p>
+            )}
+
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <button
                 type="submit"
-                disabled={selected.size === 0}
+                disabled={selected.size === 0 || submitting}
                 className="inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24] disabled:opacity-50 disabled:shadow-none"
               >
-                Schedule a Consultation
+                {submitting ? "Sending…" : "Schedule a Consultation"}
               </button>
               <Link
                 href="/contact"
