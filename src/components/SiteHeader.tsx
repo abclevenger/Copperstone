@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/office-space-for-rent", label: "Office Space" },
   { href: "/meeting-space", label: "Meeting Space" },
+  { href: "/business-solutions", label: "Business Solutions" },
   { href: "/faqs", label: "FAQs" },
   { href: "/contact", label: "Contact" },
 ];
