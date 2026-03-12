@@ -13,26 +13,26 @@ export default function HeroSection({
   return (
     <section className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center">
       <div>
-        <p className="inline-flex items-center rounded-full bg-[#f3c89a] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#c47a3a]">
+        <p className="inline-flex items-center rounded-full bg-[#f3c89a] px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-[#c47a3a] sm:text-[0.68rem]">
           Client-ready workspace in Land O&apos; Lakes &amp; South Tampa
         </p>
-        <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
           Stop running a serious business from a makeshift workspace.
         </h1>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
           Get a professional environment that helps you stay focused, present confidently to clients,
           and scale without the burden of a traditional office setup.
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
           <Link
             href="#contact"
-            className="inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24]"
+            className="inline-flex w-full items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24] sm:w-auto"
           >
             Schedule Your Tour
           </Link>
           <Link
             href="/office-space-for-rent"
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/60 px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition hover:border-[#c47a3a] hover:text-[#8a4f3d] hover:shadow-md"
+            className="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white/60 px-5 py-3 text-sm font-medium text-slate-800 shadow-sm transition hover:border-[#c47a3a] hover:text-[#8a4f3d] hover:shadow-md sm:w-auto"
           >
             Compare Workspace Options
           </Link>
@@ -43,7 +43,7 @@ export default function HeroSection({
         <p className="mt-3 text-xs text-slate-500">
           High-speed internet · Utilities included · Free-flowing coffee · Community events
         </p>
-        <div className="mt-8 grid gap-4 text-xs text-slate-600 sm:grid-cols-2 sm:text-sm">
+        <div className="mt-8 hidden gap-4 text-xs text-slate-600 sm:grid sm:grid-cols-2 sm:text-sm">
           <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
             <p className="font-semibold text-slate-900">&quot;Best prices and facilities we found.&quot;</p>
             <p className="mt-2 text-slate-600">
@@ -68,7 +68,7 @@ export default function HeroSection({
       </div>
 
       <div className="relative">
-        <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_55%),radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_55%)] opacity-70" />
+        <div className="pointer-events-none absolute -inset-4 hidden rounded-[2.5rem] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_55%),radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_55%)] opacity-70 lg:block" />
         <div className="relative z-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl backdrop-blur">
           <h2 className="text-sm font-semibold tracking-tight text-slate-900">
             A workspace strategy, not just square footage.
@@ -132,11 +132,13 @@ export default function HeroSection({
         </div>
         <div className="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-md">
           <Image
-            src="/office-space-land-o-lakes.webp"
+            src="/office-space-land-o-lakes.avif"
             alt="Copperstone Executive Suites Land O' Lakes office exterior"
             width={900}
             height={500}
             sizes="(max-width: 1024px) 100vw, 42vw"
+            priority
+            fetchPriority="high"
             className="h-full w-full object-cover"
           />
         </div>

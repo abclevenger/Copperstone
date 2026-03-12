@@ -2,27 +2,27 @@ import Image from "next/image";
 
 const galleryImages = [
   {
-    src: "/Office-Space-in-Land-O-Lakes-FL.webp",
+    src: "/Office-Space-in-Land-O-Lakes-FL.avif",
     alt: "Office space lobby at Copperstone Executive Suites in Land O' Lakes",
   },
   {
-    src: "/conference-room-land-o-lakes.webp",
+    src: "/conference-room-land-o-lakes.avif",
     alt: "Conference room at Copperstone Executive Suites in Land O' Lakes",
   },
   {
-    src: "/Event-Venue-Land-O-Lakes.webp",
+    src: "/Event-Venue-Land-O-Lakes.avif",
     alt: "Event venue setup at Copperstone Executive Suites in Land O' Lakes",
   },
   {
-    src: "/south-tampa-office-exterior.webp",
+    src: "/south-tampa-office-exterior.avif",
     alt: "Exterior of Copperstone Executive Suites South Tampa office",
   },
   {
-    src: "/Conference-Rooms-Land-O-Lakes.webp",
+    src: "/Conference-Rooms-Land-O-Lakes.avif",
     alt: "Conference room at Copperstone Executive Suites in Land O' Lakes",
   },
   {
-    src: "/Contact-Copperstone-Executive-Suites-Land-O-Lakes.webp",
+    src: "/Contact-Copperstone-Executive-Suites-Land-O-Lakes.avif",
     alt: "Copperstone Executive Suites Land O' Lakes exterior",
   },
 ];

@@ -30,11 +30,7 @@ export default function DeferredChatWidget() {
     window.addEventListener("pointerdown", onFirstInteraction, { once: true });
     window.addEventListener("keydown", onFirstInteraction, { once: true });
 
-    // Backstop: still load after a short delay.
-    const timer = window.setTimeout(loadWidget, 5000);
-
     return () => {
-      window.clearTimeout(timer);
       window.removeEventListener("pointerdown", onFirstInteraction);
       window.removeEventListener("keydown", onFirstInteraction);
     };
