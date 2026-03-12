@@ -40,7 +40,7 @@ export default function HeroSection({
         <p className="mt-2 text-[0.7rem] text-slate-500">
           We&apos;ll follow up within one business day to confirm availability and next steps.
         </p>
-        <p className="mt-3 text-xs text-slate-500">
+        <p className="mt-3 hidden text-xs text-slate-500 sm:block">
           High-speed internet · Utilities included · Free-flowing coffee · Community events
         </p>
         <div className="mt-8 hidden gap-4 text-xs text-slate-600 sm:grid sm:grid-cols-2 sm:text-sm">

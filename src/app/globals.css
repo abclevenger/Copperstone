@@ -94,15 +94,15 @@ body {
 
 @media (max-width: 640px) {
   .form-section {
-    padding: 40px 16px;
+    padding: 32px 14px;
   }
 
   .form-card {
-    padding: 14px;
-    border-radius: 22px;
+    padding: 12px;
+    border-radius: 20px;
   }
 
   .form-card iframe {
-    min-height: 860px;
+    min-height: 820px;
   }
 }

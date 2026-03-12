@@ -5,6 +5,7 @@ import ContactSection from "@/components/home/ContactSection";
 import GallerySection from "@/components/home/GallerySection";
 import HeroSection from "@/components/home/HeroSection";
 import InvestmentSection from "@/components/home/InvestmentSection";
+import LazyRender from "@/components/home/LazyRender";
 import OfferingsSection from "@/components/home/OfferingsSection";
 import SiteFooter from "@/components/home/SiteFooter";
 import StakesSection from "@/components/home/StakesSection";
@@ -37,7 +38,9 @@ export default function Home() {
         <InvestmentSection />
         <BuyerFitSection />
         <AmenitiesLocationsSection amenities={amenities} locations={locations} />
-        <GallerySection />
+        <LazyRender rootMargin="450px 0px" minHeightClassName="min-h-[520px]">
+          <GallerySection />
+        </LazyRender>
         <ContactSection
           phoneLandOLakes={PHONE_LAND_O_LAKES}
           phoneSouthTampa={PHONE_SOUTH_TAMPA}
