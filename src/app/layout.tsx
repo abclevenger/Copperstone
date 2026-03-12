@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import DeferredChatWidget from "@/components/DeferredChatWidget";
 import SiteHeader from "@/components/SiteHeader";
@@ -60,6 +61,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900`}
       >
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-3RV4C1HD8N"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-3RV4C1HD8N');
+          `}
+        </Script>
         <SiteHeader />
         {children}
         <DeferredChatWidget />
