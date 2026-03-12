@@ -56,7 +56,7 @@ export default function SiteHeader() {
             alt="Copperstone Executive Suites"
             width={160}
             height={46}
-            className="h-9 w-auto drop-shadow-sm"
+            className="h-10 w-auto drop-shadow-sm md:h-11"
             priority
             sizes="160px"
           />
