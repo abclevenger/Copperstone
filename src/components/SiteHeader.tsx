@@ -11,8 +11,9 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/office-space-for-rent", label: "Office Space" },
   { href: "/meeting-space", label: "Meeting Space" },
-  { href: "/business-solutions", label: "Business Solutions" },
+  { href: "/business-solutions", label: "Solutions" },
   { href: "/training", label: "Training" },
+  { href: "/workspace-finder", label: "Workspace Finder" },
   { href: "/faqs", label: "FAQs" },
   { href: "/contact", label: "Contact" },
 ];
