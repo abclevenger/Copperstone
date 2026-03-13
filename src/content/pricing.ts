@@ -75,6 +75,50 @@ export const WEBSITE_HOSTING = {
   volumeNote: "Custom builds quoted separately",
 } as const;
 
+export const EMAIL_ACCOUNTS = {
+  pricePerUser: 20,
+  period: "mo" as const,
+  label: "Business Email",
+  tagline: "Professional email that builds trust with every message",
+  shortDescription:
+    "Custom domain, calendar, cloud storage, and admin controls",
+  features: [
+    "Custom domain email (you@yourcompany.com)",
+    "Calendar & scheduling",
+    "Cloud storage & file sharing",
+    "Spam & phishing protection",
+    "Mobile & desktop sync",
+    "Admin controls & user management",
+    "99.9% uptime SLA",
+    "Volume discounts available",
+  ],
+  billingNote: "Billed per enabled user, per month",
+  volumeNote: "Volume pricing available for 5+ users",
+  minUsers: 1,
+  maxUsers: 100,
+} as const;
+
+export const SEO_SERVICES = {
+  startingPrice: 200,
+  period: "mo" as const,
+  label: "SEO Services",
+  tagline: "Get found by the customers already searching for you",
+  shortDescription:
+    "On-page optimization, local SEO, content strategy, and monthly reporting",
+  features: [
+    "On-page & technical SEO audit",
+    "Google Business Profile optimization",
+    "Local SEO & map pack targeting",
+    "Keyword research & content strategy",
+    "Monthly performance reporting",
+    "Competitor analysis",
+    "Link building & citations",
+    "Dedicated SEO specialist",
+  ],
+  billingNote: "Flat monthly fee — no per-user charge",
+  volumeNote: "Custom campaigns quoted separately",
+} as const;
+
 // ── Traditional Office Comparison (for Cost Calculator) ──────────────
 export const TRADITIONAL_OFFICE = {
   ratePerSqFt: 28,
@@ -87,6 +131,8 @@ export const TRADITIONAL_OFFICE = {
   meetingRoomRate: 75,
   phonePerUser: 45,
   websiteHostingMonthly: 300,
+  emailPerUser: 30,
+  seoMonthly: 500,
 } as const;
 
 // ── Helpers ──────────────────────────────────────────────────────────

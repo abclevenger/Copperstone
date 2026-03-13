@@ -111,12 +111,13 @@ export const partnerCategories: PartnerCategory[] = [
     category: "Digital Presence",
     icon: "globe",
     description:
-      "Build visibility and attract customers with websites, SEO, and marketing. Our Website & Hosting add-on starts at $150/mo with design, hosting, SSL, and ongoing updates included.",
+      "Build visibility and attract customers with websites, SEO, email, and marketing. Website & Hosting from $150/mo, Business Email from $20/user/mo, SEO from $200/mo.",
     services: [
       "Website & Hosting Add-On (from $150/mo)",
+      "SEO Services Add-On (from $200/mo)",
+      "Business Email Add-On (from $20/user/mo)",
       "Custom Website Design & Development",
       "Managed Cloud Hosting & SSL",
-      "Search Engine Optimization (SEO)",
       "Local Visibility & Google Business",
       "Digital Marketing Support",
     ],

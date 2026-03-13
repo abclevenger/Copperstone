@@ -168,6 +168,30 @@ export const faqs: FAQ[] = [
       "No. Phone Services is available as a standalone add-on or paired with any Copperstone plan — executive suite, virtual office, coworking, or meeting space membership.",
   },
   {
+    category: "Business Email",
+    question: "What is the Business Email add-on?",
+    answer:
+      "Business Email gives each team member a professional email address on your custom domain (e.g., you@yourcompany.com) with calendar, cloud storage, spam protection, and admin controls — starting at $20 per user per month.",
+  },
+  {
+    category: "Business Email",
+    question: "How does per-user billing work for Business Email?",
+    answer:
+      "Business Email is billed per enabled user, per month. If you have 3 users on the plan, you pay 3 × $20 = $60/month. Add or remove mailboxes anytime — you only pay for active accounts.",
+  },
+  {
+    category: "Business Email",
+    question: "Can I use my own domain for email?",
+    answer:
+      "Yes. We set up email on your existing domain so your team sends and receives from professional addresses like name@yourcompany.com. If you don't have a domain yet, we can help you get one.",
+  },
+  {
+    category: "Business Email",
+    question: "Do I need an office to get Business Email?",
+    answer:
+      "No. Business Email is available as a standalone add-on or paired with any Copperstone plan — perfect for virtual office clients who want a complete professional identity.",
+  },
+  {
     category: "Website & Hosting",
     question: "What is the Website & Hosting add-on?",
     answer:
@@ -197,6 +221,30 @@ export const faqs: FAQ[] = [
     answer:
       "No. Website & Hosting is available as a standalone add-on or paired with any Copperstone plan. It's popular with virtual office clients who want a professional web presence to match their business address.",
   },
+  {
+    category: "SEO Services",
+    question: "What is the SEO Services add-on?",
+    answer:
+      "SEO Services is an optional add-on that helps your business rank higher in Google and attract more local customers. It includes on-page optimization, local SEO, Google Business Profile management, keyword research, and monthly reporting — starting at $200/month.",
+  },
+  {
+    category: "SEO Services",
+    question: "How long before I see results from SEO?",
+    answer:
+      "SEO is a long-term strategy. Most businesses see measurable improvements in search rankings within 3–6 months, with compounding results over time. We provide monthly reports so you can track progress from day one.",
+  },
+  {
+    category: "SEO Services",
+    question: "Can I combine SEO with Website & Hosting?",
+    answer:
+      "Absolutely — and we recommend it. When your website and SEO are managed together, we can make technical optimizations faster and align content strategy with search intent for better results.",
+  },
+  {
+    category: "SEO Services",
+    question: "Do I need an office to get SEO Services?",
+    answer:
+      "No. SEO Services is available as a standalone add-on for any business. It pairs especially well with virtual office plans for businesses that want strong local search visibility in the Tampa Bay area.",
+  },
 ];
 
 export const faqCategories = [
@@ -204,7 +252,9 @@ export const faqCategories = [
   "Spaces & Services",
   "Amenities",
   "Phone Services",
+  "Business Email",
   "Website & Hosting",
+  "SEO Services",
   "Locations",
   "Getting Started",
   "Pricing & Billing",

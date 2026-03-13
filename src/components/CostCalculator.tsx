@@ -6,7 +6,9 @@ import { trackCTAClick } from "@/lib/analytics";
 import {
   PRICING,
   PHONE_SERVICES,
+  EMAIL_ACCOUNTS,
   WEBSITE_HOSTING,
+  SEO_SERVICES,
   TRADITIONAL_OFFICE,
   formatPrice,
 } from "@/content/pricing";
@@ -70,7 +72,10 @@ export default function CostCalculator() {
   });
   const [phoneEnabled, setPhoneEnabled] = useState(false);
   const [phoneUsers, setPhoneUsers] = useState(0);
+  const [emailEnabled, setEmailEnabled] = useState(false);
+  const [emailUsers, setEmailUsers] = useState(0);
   const [websiteEnabled, setWebsiteEnabled] = useState(false);
+  const [seoEnabled, setSeoEnabled] = useState(false);
 
   const update = (id: string, val: number) =>
     setValues((prev) => ({ ...prev, [id]: val }));
@@ -81,6 +86,12 @@ export default function CostCalculator() {
     const next = !phoneEnabled;
     setPhoneEnabled(next);
     if (next && phoneUsers === 0) setPhoneUsers(employees);
+  };
+
+  const handleEmailToggle = () => {
+    const next = !emailEnabled;
+    setEmailEnabled(next);
+    if (next && emailUsers === 0) setEmailUsers(employees);
   };
 
   const { traditional, copperstone, savings, savingsPercent } = useMemo(() => {
@@ -119,10 +130,22 @@ export default function CostCalculator() {
         monthly: tradPhone,
       });
     }
+    if (emailEnabled) {
+      tradBreakdown.push({
+        label: `Email Accounts (${emp} users)`,
+        monthly: emp * TRADITIONAL_OFFICE.emailPerUser,
+      });
+    }
     if (websiteEnabled) {
       tradBreakdown.push({
         label: "Website & Hosting",
         monthly: TRADITIONAL_OFFICE.websiteHostingMonthly,
+      });
+    }
+    if (seoEnabled) {
+      tradBreakdown.push({
+        label: "SEO Services",
+        monthly: TRADITIONAL_OFFICE.seoMonthly,
       });
     }
 
@@ -162,10 +185,22 @@ export default function CostCalculator() {
         monthly: phoneCost,
       });
     }
+    if (emailEnabled) {
+      copBreakdown.push({
+        label: `Business Email (${emailUsers} ${emailUsers === 1 ? "user" : "users"})`,
+        monthly: emailUsers * EMAIL_ACCOUNTS.pricePerUser,
+      });
+    }
     if (websiteEnabled) {
       copBreakdown.push({
         label: "Website & Hosting",
         monthly: WEBSITE_HOSTING.startingPrice,
+      });
+    }
+    if (seoEnabled) {
+      copBreakdown.push({
+        label: "SEO Services",
+        monthly: SEO_SERVICES.startingPrice,
       });
     }
 
@@ -179,7 +214,7 @@ export default function CostCalculator() {
       savings: sav,
       savingsPercent: pct,
     };
-  }, [values, phoneEnabled, phoneUsers, websiteEnabled]);
+  }, [values, phoneEnabled, phoneUsers, emailEnabled, emailUsers, websiteEnabled, seoEnabled]);
 
   const maxCost = Math.max(traditional.total, copperstone.total, 1);
 
@@ -331,6 +366,105 @@ export default function CostCalculator() {
         )}
       </div>
 
+      {/* ── Business Email Add-On Toggle ── */}
+      <div
+        className={`mt-4 rounded-2xl border p-5 shadow-sm transition-all sm:p-6 ${
+          emailEnabled
+            ? "border-[#c47a3a]/30 bg-[#fffaf5]"
+            : "border-slate-200 bg-white"
+        }`}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <svg
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#c47a3a]"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+              />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-slate-900">
+                Add Business Email
+              </p>
+              <p className="mt-0.5 text-[0.68rem] text-slate-500">
+                {EMAIL_ACCOUNTS.shortDescription} —{" "}
+                <span className="font-medium text-[#c47a3a]">
+                  {formatPrice(EMAIL_ACCOUNTS.pricePerUser)}/user/mo
+                </span>
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={emailEnabled}
+            onClick={handleEmailToggle}
+            className={`relative mt-0.5 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
+              emailEnabled ? "bg-[#c47a3a]" : "bg-slate-200"
+            }`}
+          >
+            <span
+              className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transition-transform ${
+                emailEnabled ? "translate-x-5" : "translate-x-0"
+              }`}
+            />
+          </button>
+        </div>
+
+        {emailEnabled && (
+          <div className="mt-4 flex items-center gap-4 border-t border-[#d6b08a]/30 pt-4">
+            <label
+              htmlFor="email-users"
+              className="text-xs font-medium text-slate-700"
+            >
+              Email users:
+            </label>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setEmailUsers(Math.max(1, emailUsers - 1))}
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-300 bg-white text-sm font-bold text-slate-600 transition hover:border-[#c47a3a] hover:text-[#c47a3a]"
+              >
+                −
+              </button>
+              <input
+                id="email-users"
+                type="number"
+                min={EMAIL_ACCOUNTS.minUsers}
+                max={EMAIL_ACCOUNTS.maxUsers}
+                value={emailUsers}
+                onChange={(e) =>
+                  setEmailUsers(
+                    Math.max(1, Math.min(EMAIL_ACCOUNTS.maxUsers, Number(e.target.value) || 1))
+                  )
+                }
+                className="w-14 rounded-lg border border-slate-300 bg-white px-2 py-1 text-center text-sm font-semibold text-slate-900 outline-none transition focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  setEmailUsers(Math.min(EMAIL_ACCOUNTS.maxUsers, emailUsers + 1))
+                }
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-300 bg-white text-sm font-bold text-slate-600 transition hover:border-[#c47a3a] hover:text-[#c47a3a]"
+              >
+                +
+              </button>
+            </div>
+            <span className="text-xs font-semibold text-[#c47a3a]">
+              {formatPrice(emailUsers * EMAIL_ACCOUNTS.pricePerUser)}/mo
+            </span>
+          </div>
+        )}
+      </div>
+
       {/* ── Website & Hosting Add-On Toggle ── */}
       <div
         className={`mt-4 rounded-2xl border p-5 shadow-sm transition-all sm:p-6 ${
@@ -379,6 +513,60 @@ export default function CostCalculator() {
             <span
               className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transition-transform ${
                 websiteEnabled ? "translate-x-5" : "translate-x-0"
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* ── SEO Services Add-On Toggle ── */}
+      <div
+        className={`mt-4 rounded-2xl border p-5 shadow-sm transition-all sm:p-6 ${
+          seoEnabled
+            ? "border-[#c47a3a]/30 bg-[#fffaf5]"
+            : "border-slate-200 bg-white"
+        }`}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <svg
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#c47a3a]"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"
+              />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-slate-900">
+                Add SEO Services
+              </p>
+              <p className="mt-0.5 text-[0.68rem] text-slate-500">
+                {SEO_SERVICES.shortDescription} —{" "}
+                <span className="font-medium text-[#c47a3a]">
+                  {formatPrice(SEO_SERVICES.startingPrice)}/mo
+                </span>
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={seoEnabled}
+            onClick={() => setSeoEnabled(!seoEnabled)}
+            className={`relative mt-0.5 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
+              seoEnabled ? "bg-[#c47a3a]" : "bg-slate-200"
+            }`}
+          >
+            <span
+              className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transition-transform ${
+                seoEnabled ? "translate-x-5" : "translate-x-0"
               }`}
             />
           </button>
@@ -562,8 +750,10 @@ export default function CostCalculator() {
       <p className="mt-4 text-center text-[0.62rem] leading-relaxed text-slate-400">
         *Estimates are for illustration only. Traditional office costs based on
         Tampa Bay averages. Copperstone pricing varies by location, suite size,
-        and term. Phone Services at {formatPrice(PHONE_SERVICES.pricePerUser)}/user/mo;
-        Website &amp; Hosting from {formatPrice(WEBSITE_HOSTING.startingPrice)}/mo.{" "}
+        and term. Add-on pricing: Phone {formatPrice(PHONE_SERVICES.pricePerUser)}/user/mo,
+        Email {formatPrice(EMAIL_ACCOUNTS.pricePerUser)}/user/mo,
+        Website {formatPrice(WEBSITE_HOSTING.startingPrice)}/mo,
+        SEO from {formatPrice(SEO_SERVICES.startingPrice)}/mo.{" "}
         <Link
           href="/contact"
           className="underline underline-offset-2 hover:text-[#c47a3a]"
