@@ -41,6 +41,7 @@ const solutionsSchema = {
     "Executive Office Space",
     "Virtual Office",
     "Meeting Room Rentals",
+    "Phone Services",
     "Business Phone Systems",
     "Business Messaging & Communications",
     "Website Design",

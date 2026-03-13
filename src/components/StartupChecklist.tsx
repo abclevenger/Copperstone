@@ -41,9 +41,9 @@ const checklistItems: ChecklistItem[] = [
   },
   {
     id: "phone-system",
-    title: "Business Phone System",
+    title: "Phone Services",
     description:
-      "Professional phone numbers, VoIP systems, and call handling solutions available through trusted technology partners.",
+      "Give each team member a business phone line with call transcription, voice recording, AI receptionist, and more — starting at $20/user/month.",
     icon: (
       <path
         strokeLinecap="round"

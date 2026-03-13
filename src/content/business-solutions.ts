@@ -83,9 +83,11 @@ export const partnerCategories: PartnerCategory[] = [
     category: "Communications",
     icon: "phone",
     description:
-      "Stay connected with enterprise-grade phone, internet, and communications solutions matched to your business.",
+      "Stay connected with enterprise-grade phone, internet, and communications solutions. Our Phone Services add-on starts at $20/user/month with transcription, AI receptionist, and more.",
     services: [
-      "Business Phone Systems",
+      "Phone Services Add-On (from $20/user/mo)",
+      "Call Transcription & Voice Recording",
+      "AI Receptionist & Call Routing",
       "VoIP & Unified Communications",
       "Internet & Connectivity",
       "Contact Center Solutions",

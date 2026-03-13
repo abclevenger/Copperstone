@@ -137,12 +137,43 @@ export const faqs: FAQ[] = [
     answer:
       "Yes. We offer incentives for 6-month and 12-month commitments. The longer the term, the better the rate. Ask about current specials during your tour.",
   },
+  {
+    category: "Phone Services",
+    question: "What is the Phone Services add-on?",
+    answer:
+      "Phone Services is an optional add-on that gives each team member a professional business phone line with smart call features — including call transcription, voice recording, AI receptionist, voicemail-to-email, call routing, and mobile/desktop apps. It starts at $20 per user per month.",
+  },
+  {
+    category: "Phone Services",
+    question: "How does per-user billing work for Phone Services?",
+    answer:
+      "Phone Services is billed per enabled user, per month. If you have 5 users on the plan, you pay 5 × $20 = $100/month. You only pay for the lines you actually use — add or remove users anytime.",
+  },
+  {
+    category: "Phone Services",
+    question: "How do I add or remove Phone Services users?",
+    answer:
+      "Contact your Copperstone account manager to add or remove phone lines at any time. Changes take effect at the start of your next billing cycle. There's no penalty for scaling up or down.",
+  },
+  {
+    category: "Phone Services",
+    question: "Are volume discounts available for Phone Services?",
+    answer:
+      "Yes. Volume pricing is available for teams with 5 or more users. Ask during your consultation for a custom quote based on your team size.",
+  },
+  {
+    category: "Phone Services",
+    question: "Do I need an office to get Phone Services?",
+    answer:
+      "No. Phone Services is available as a standalone add-on or paired with any Copperstone plan — executive suite, virtual office, coworking, or meeting space membership.",
+  },
 ];
 
 export const faqCategories = [
   "All",
   "Spaces & Services",
   "Amenities",
+  "Phone Services",
   "Locations",
   "Getting Started",
   "Pricing & Billing",
