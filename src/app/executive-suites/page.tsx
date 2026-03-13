@@ -30,6 +30,23 @@ export default function ExecutiveSuitesPage() {
         Private offices in a professional setting, with amenities included so you can focus on your business.
       </p>
 
+      <div className="mt-4 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
+        <svg className="h-5 w-5 shrink-0 text-amber-600" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+        <div>
+          <p className="text-sm font-semibold text-amber-900">
+            All executive suites are currently occupied.
+          </p>
+          <p className="mt-0.5 text-xs text-amber-700">
+            Join our waiting list to be first in line when a suite opens up.{" "}
+            <a href="/#contact" className="font-semibold underline underline-offset-2 hover:text-amber-900">
+              Join the waitlist →
+            </a>
+          </p>
+        </div>
+      </div>
+
       <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm">
         <Image
           src="/Executive-Offices-for-Rent-Land-O-Lakes.jpg"
@@ -73,10 +90,28 @@ export default function ExecutiveSuitesPage() {
           </li>
         </ul>
 
-        <p className="mt-4 text-sm text-slate-700">
-          To see current executive suite availability and layout options, schedule a tour at the
-          location that works best for you. We&apos;ll walk you through the spaces and help you
-          decide what fits your business.
+        <div className="mt-4 rounded-2xl border border-[#c47a3a]/30 bg-[#fffaf5] p-4">
+          <p className="text-sm font-semibold text-slate-900">
+            Join the Waiting List
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-slate-600">
+            All suites are currently full due to high demand. Openings happen regularly —
+            join the waitlist and we&apos;ll reach out as soon as a suite becomes available.
+            We can also schedule a tour so you&apos;re ready to move in quickly.
+          </p>
+          <a
+            href="/#contact"
+            className="mt-3 inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24]"
+          >
+            Join the Waitlist
+          </a>
+        </div>
+
+        <p className="mt-4 text-xs text-slate-500">
+          Virtual office plans, meeting rooms, and coworking access are still available while you wait.{" "}
+          <a href="/meeting-space" className="font-semibold text-[#c47a3a] underline underline-offset-2">
+            View meeting space →
+          </a>
         </p>
       </section>
     </main>

@@ -1,6 +1,18 @@
 import Link from "next/link";
 
-const tiers = [
+type Tier = {
+  name: string;
+  starting: string;
+  period: string;
+  description: string;
+  features: string[];
+  cta: string;
+  href: string;
+  featured: boolean;
+  badge?: string;
+};
+
+const tiers: Tier[] = [
   {
     name: "Virtual Office",
     starting: "$99",
@@ -15,6 +27,7 @@ const tiers = [
     cta: "Learn More",
     href: "/office-space-for-rent",
     featured: false,
+    badge: "Available",
   },
   {
     name: "Executive Suite",
@@ -28,9 +41,10 @@ const tiers = [
       "Utilities & coffee included",
       "Conference room access",
     ],
-    cta: "Schedule a Tour",
+    cta: "Join the Waitlist",
     href: "/#contact",
     featured: true,
+    badge: "Waitlist Only",
   },
   {
     name: "Meeting Space",
@@ -46,6 +60,7 @@ const tiers = [
     cta: "View Rooms",
     href: "/meeting-space",
     featured: false,
+    badge: "Available",
   },
 ];
 
@@ -78,9 +93,20 @@ export default function PricingSection() {
                 Most Popular
               </span>
             )}
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-              {tier.name}
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                {tier.name}
+              </p>
+              {tier.badge && (
+                <span className={`rounded-full px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-wide ${
+                  tier.badge === "Waitlist Only"
+                    ? "bg-amber-100 text-amber-700"
+                    : "bg-emerald-100 text-emerald-700"
+                }`}>
+                  {tier.badge}
+                </span>
+              )}
+            </div>
             <div className="mt-2 flex items-baseline gap-1">
               <span className="text-3xl font-semibold text-slate-900">
                 {tier.starting}

@@ -30,6 +30,23 @@ export default function OfficeSpacePage() {
         Private executive offices and flexible workspace in Land O&apos; Lakes and South Tampa.
       </p>
 
+      <div className="mt-4 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
+        <svg className="h-5 w-5 shrink-0 text-amber-600" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+        <div>
+          <p className="text-sm font-semibold text-amber-900">
+            Office spaces are currently full at both locations.
+          </p>
+          <p className="mt-0.5 text-xs text-amber-700">
+            We maintain a waiting list and will contact you as soon as space opens up.{" "}
+            <a href="/#contact" className="font-semibold underline underline-offset-2 hover:text-amber-900">
+              Join the waitlist →
+            </a>
+          </p>
+        </div>
+      </div>
+
       <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm">
         <Image
           src="/Executive-Offices-for-Rent-Land-O-Lakes.jpg"
@@ -92,20 +109,33 @@ export default function OfficeSpacePage() {
           Locations
         </h2>
         <p className="mt-2">
-          Offices are available at both our Land O&apos; Lakes and South Tampa locations.
-          Availability and specific layouts vary, so the best next step is to schedule a tour.
+          We have two locations in Land O&apos; Lakes and South Tampa. Due to high demand,
+          office spaces at both locations are currently full.
         </p>
 
-        <p className="mt-4 text-sm text-slate-700">
-          To learn more about current office availability or to schedule a tour, use the Schedule a
-          Tour form on our homepage or contact either location directly.
-        </p>
-        <p className="mt-2 text-sm text-slate-700">
-          When you&apos;re ready,{" "}
-          <a href="/#contact" className="font-semibold text-[#c47a3a] underline underline-offset-2">
-            schedule a tour
-          </a>{" "}
-          so we can show you available offices and answer your questions in person.
+        <div className="mt-4 rounded-2xl border border-[#c47a3a]/30 bg-[#fffaf5] p-4">
+          <p className="text-sm font-semibold text-slate-900">
+            Join the Waiting List
+          </p>
+          <p className="mt-1 text-xs leading-relaxed text-slate-600">
+            Spaces open regularly as businesses grow and relocate. Get on our waiting list
+            and be the first to know when an office becomes available. We&apos;ll also schedule
+            a tour so you&apos;re ready to move quickly when the time comes.
+          </p>
+          <a
+            href="/#contact"
+            className="mt-3 inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24]"
+          >
+            Join the Waitlist
+          </a>
+        </div>
+
+        <p className="mt-4 text-xs text-slate-500">
+          In the meantime, our virtual office plans, meeting rooms, and coworking memberships
+          remain available.{" "}
+          <a href="/meeting-space" className="font-semibold text-[#c47a3a] underline underline-offset-2">
+            View meeting space →
+          </a>
         </p>
       </section>
     </main>

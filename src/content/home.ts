@@ -43,11 +43,11 @@ export const offerings: Offering[] = [
   {
     title: "Executive Suites",
     description:
-      "Private, lockable offices for professionals who need consistency, privacy, and a polished client-facing experience.",
+      "Private, lockable offices for professionals who need consistency, privacy, and a polished client-facing experience. Currently full — join our waiting list.",
     highlights: [
       "Client-ready private offices",
       "Professional lobby and reception presence",
-      "Stable home base for growth",
+      "Waitlist available — spaces open regularly",
     ],
   },
   {

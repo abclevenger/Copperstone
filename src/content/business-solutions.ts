@@ -28,7 +28,7 @@ export const coreServices: CoreService[] = [
   {
     title: "Executive Office Space",
     description:
-      "Private, lockable offices with professional reception, lobby presence, and a client-ready environment built for credibility.",
+      "Private, lockable offices with professional reception, lobby presence, and a client-ready environment. Currently full — waitlist available.",
     icon: "building",
     href: "/office-space-for-rent",
   },
