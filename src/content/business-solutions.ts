@@ -92,6 +92,20 @@ export const partnerCategories: PartnerCategory[] = [
     ],
   },
   {
+    category: "Business Messaging",
+    icon: "chat",
+    description:
+      "Reach customers where they are with SMS, email, live chat, and unified messaging platforms that drive engagement and conversions.",
+    services: [
+      "SMS & Text Message Marketing",
+      "Email Marketing & Automation",
+      "Live Chat & Website Messaging",
+      "Reputation & Review Management",
+      "Unified Inbox & Omnichannel Messaging",
+      "Appointment Reminders & Follow-ups",
+    ],
+  },
+  {
     category: "Digital Presence",
     icon: "globe",
     description:
