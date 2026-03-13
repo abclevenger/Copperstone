@@ -67,7 +67,7 @@ export const coreServices: CoreService[] = [
   {
     title: "Mail Handling & Mailbox Services",
     description:
-      "Secure mail collection, package handling, and mail forwarding from a real business address.",
+      "Secure mail collection, package handling, and mail forwarding from a real business address. Upgrade to Scan Mail ($30/mo) for digital delivery to your inbox.",
     icon: "envelope",
   },
   {
@@ -83,9 +83,10 @@ export const partnerCategories: PartnerCategory[] = [
     category: "Communications",
     icon: "phone",
     description:
-      "Stay connected with enterprise-grade phone, internet, and communications solutions. Our Phone Services add-on starts at $20/user/month with transcription, AI receptionist, and more.",
+      "Stay connected with enterprise-grade phone, internet, and communications solutions. Phone Services from $20/user/mo, AI Receptionist from $50/mo.",
     services: [
       "Phone Services Add-On (from $20/user/mo)",
+      "AI Receptionist Add-On (from $50/mo)",
       "Call Transcription & Voice Recording",
       "AI Receptionist & Call Routing",
       "VoIP & Unified Communications",
@@ -111,12 +112,13 @@ export const partnerCategories: PartnerCategory[] = [
     category: "Digital Presence",
     icon: "globe",
     description:
-      "Build visibility and attract customers with websites, SEO, email, and marketing. Website & Hosting from $150/mo, Business Email from $20/user/mo, SEO from $200/mo.",
+      "Build visibility and attract customers with websites, CRM, SEO, email, and marketing. Website, Hosting & CRM from $150/mo, Business Email from $20/user/mo, SEO from $200/mo.",
     services: [
-      "Website & Hosting Add-On (from $150/mo)",
+      "Website, Hosting & CRM Add-On (from $150/mo)",
       "SEO Services Add-On (from $200/mo)",
       "Business Email Add-On (from $20/user/mo)",
       "Custom Website Design & Development",
+      "Built-in CRM & Lead Management",
       "Managed Cloud Hosting & SSL",
       "Local Visibility & Google Business",
       "Digital Marketing Support",

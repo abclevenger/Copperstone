@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import {
   PRICING,
@@ -5,8 +8,12 @@ import {
   EMAIL_ACCOUNTS,
   WEBSITE_HOSTING,
   SEO_SERVICES,
+  AI_RECEPTIONIST,
+  SCAN_MAIL,
+  GHL_WEBHOOK,
   formatPrice,
 } from "@/content/pricing";
+import { trackCTAClick } from "@/lib/analytics";
 
 type Tier = {
   name: string;
@@ -73,6 +80,7 @@ const tiers: Tier[] = [
 ];
 
 type AddOn = {
+  id: string;
   label: string;
   tagline: string;
   shortDescription: string;
@@ -81,10 +89,12 @@ type AddOn = {
   priceSuffix: string;
   volumeNote: string;
   icon: React.ReactNode;
+  badge?: string;
 };
 
 const addOns: AddOn[] = [
   {
+    id: "phone-services",
     label: PHONE_SERVICES.label,
     tagline: PHONE_SERVICES.tagline,
     shortDescription: PHONE_SERVICES.shortDescription,
@@ -101,6 +111,7 @@ const addOns: AddOn[] = [
     ),
   },
   {
+    id: "business-email",
     label: EMAIL_ACCOUNTS.label,
     tagline: EMAIL_ACCOUNTS.tagline,
     shortDescription: EMAIL_ACCOUNTS.shortDescription,
@@ -117,6 +128,7 @@ const addOns: AddOn[] = [
     ),
   },
   {
+    id: "website-hosting-crm",
     label: WEBSITE_HOSTING.label,
     tagline: WEBSITE_HOSTING.tagline,
     shortDescription: WEBSITE_HOSTING.shortDescription,
@@ -133,6 +145,7 @@ const addOns: AddOn[] = [
     ),
   },
   {
+    id: "seo-services",
     label: SEO_SERVICES.label,
     tagline: SEO_SERVICES.tagline,
     shortDescription: SEO_SERVICES.shortDescription,
@@ -145,6 +158,41 @@ const addOns: AddOn[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"
+      />
+    ),
+  },
+  {
+    id: "ai-receptionist",
+    label: AI_RECEPTIONIST.label,
+    tagline: AI_RECEPTIONIST.tagline,
+    shortDescription: AI_RECEPTIONIST.shortDescription,
+    features: AI_RECEPTIONIST.features,
+    price: formatPrice(AI_RECEPTIONIST.startingPrice),
+    priceSuffix: "/mo",
+    volumeNote: AI_RECEPTIONIST.volumeNote,
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+      />
+    ),
+  },
+  {
+    id: "scan-mail",
+    label: SCAN_MAIL.label,
+    tagline: SCAN_MAIL.tagline,
+    shortDescription: SCAN_MAIL.shortDescription,
+    features: SCAN_MAIL.features,
+    price: formatPrice(SCAN_MAIL.startingPrice),
+    priceSuffix: "/mo",
+    volumeNote: SCAN_MAIL.volumeNote,
+    badge: SCAN_MAIL.badge,
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 0l.879.474a2.25 2.25 0 002.171-3.938l-.879-.474m-8.839 0a2.25 2.25 0 01-2.171 0m0 0l-.879.474a2.25 2.25 0 01-2.171-3.938l.879-.474m12.01 0L21 7.19a2.25 2.25 0 00-1.423-1.423L12 3l-7.577 2.767A2.25 2.25 0 003 7.19l.261.142"
       />
     ),
   },
@@ -166,6 +214,63 @@ function CheckIcon() {
 }
 
 export default function PricingSection() {
+  const [selectedAddon, setSelectedAddon] = useState<AddOn | null>(null);
+  const [formName, setFormName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formPhone, setFormPhone] = useState("");
+  const [formCompany, setFormCompany] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleAddToPlan = (addon: AddOn) => {
+    setSelectedAddon(addon);
+    setSubmitted(false);
+    setError(false);
+    trackCTAClick(`addon_interest_${addon.id}`);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!selectedAddon) return;
+    setSubmitting(true);
+    setError(false);
+    trackCTAClick(`addon_submit_${selectedAddon.id}`);
+
+    try {
+      await fetch(GHL_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formName,
+          email: formEmail,
+          phone: formPhone,
+          company: formCompany || "Not provided",
+          addon_interest: selectedAddon.label,
+          addon_price: `${selectedAddon.price}${selectedAddon.priceSuffix}`,
+          source: "Copperstone Pricing – Add to Plan",
+          page_url: typeof window !== "undefined" ? window.location.href : "",
+          submitted_at: new Date().toISOString(),
+        }),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedAddon(null);
+    setFormName("");
+    setFormEmail("");
+    setFormPhone("");
+    setFormCompany("");
+    setSubmitted(false);
+    setError(false);
+  };
+
   return (
     <section className="mt-16 lg:mt-20">
       <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-900">
@@ -247,13 +352,13 @@ export default function PricingSection() {
         Upgrade any plan with premium services. Mix and match to fit your needs.
       </p>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {addOns.map((addon) => (
           <div
-            key={addon.label}
+            key={addon.id}
             className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
           >
-            <div className="flex flex-col gap-4 p-5">
+            <div className="flex h-full flex-col gap-4 p-5">
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f3c89a]/20">
                   <svg
@@ -270,8 +375,14 @@ export default function PricingSection() {
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <p className="text-sm font-semibold text-slate-900">{addon.label}</p>
-                    <span className="rounded-full bg-[#f3c89a]/30 px-2 py-0.5 text-[0.54rem] font-semibold uppercase tracking-wide text-[#a35f24]">
-                      Add-On
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-[0.54rem] font-semibold uppercase tracking-wide ${
+                        addon.badge === "Premium"
+                          ? "bg-purple-100 text-purple-700"
+                          : "bg-[#f3c89a]/30 text-[#a35f24]"
+                      }`}
+                    >
+                      {addon.badge ?? "Add-On"}
                     </span>
                   </div>
                   <p className="mt-0.5 text-[0.68rem] leading-relaxed text-slate-600">
@@ -289,7 +400,7 @@ export default function PricingSection() {
                 ))}
               </div>
 
-              <div className="flex items-end justify-between border-t border-slate-100 pt-3">
+              <div className="mt-auto flex items-end justify-between border-t border-slate-100 pt-3">
                 <div>
                   <div className="flex items-baseline gap-1">
                     <span className="text-xl font-semibold text-slate-900">{addon.price}</span>
@@ -297,12 +408,13 @@ export default function PricingSection() {
                   </div>
                   <p className="mt-0.5 text-[0.58rem] text-slate-400">{addon.volumeNote}</p>
                 </div>
-                <Link
-                  href="/#contact"
+                <button
+                  type="button"
+                  onClick={() => handleAddToPlan(addon)}
                   className="inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-4 py-1.5 text-[0.68rem] font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
                 >
                   Add to Plan
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -315,6 +427,123 @@ export default function PricingSection() {
           Contact us for a custom quote.
         </Link>
       </p>
+
+      {/* ── Add-to-Plan Modal ── */}
+      {selectedAddon && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+            <div className="bg-[#fffaf5] px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#a35f24]">
+                    Add to Your Plan
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-slate-900">
+                    {selectedAddon.label}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+                  aria-label="Close"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <p className="mt-1 text-xs text-slate-600">
+                {selectedAddon.shortDescription} — <span className="font-semibold text-[#c47a3a]">{selectedAddon.price}{selectedAddon.priceSuffix}</span>
+              </p>
+            </div>
+
+            <div className="px-6 py-5">
+              {submitted ? (
+                <div className="py-6 text-center">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100">
+                    <svg className="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </div>
+                  <p className="mt-3 text-sm font-semibold text-slate-900">Request received!</p>
+                  <p className="mt-1 text-xs text-slate-500">
+                    We&apos;ll be in touch shortly to get {selectedAddon.label} set up for you.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="mt-4 inline-flex items-center justify-center rounded-full border border-slate-300 px-5 py-2 text-xs font-semibold text-slate-700 transition hover:border-[#c47a3a] hover:text-[#8a4f3d]"
+                  >
+                    Close
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  <p className="text-xs text-slate-600">
+                    Tell us a bit about yourself and we&apos;ll reach out to activate this add-on.
+                  </p>
+                  <div className="mt-4 grid gap-3">
+                    <input
+                      type="text"
+                      required
+                      placeholder="Full name *"
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                    />
+                    <input
+                      type="email"
+                      required
+                      placeholder="Email address *"
+                      value={formEmail}
+                      onChange={(e) => setFormEmail(e.target.value)}
+                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                    />
+                    <div className="grid grid-cols-2 gap-3">
+                      <input
+                        type="tel"
+                        required
+                        placeholder="Phone *"
+                        value={formPhone}
+                        onChange={(e) => setFormPhone(e.target.value)}
+                        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Company"
+                        value={formCompany}
+                        onChange={(e) => setFormCompany(e.target.value)}
+                        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                      />
+                    </div>
+                  </div>
+                  {error && (
+                    <p className="mt-3 text-xs font-medium text-red-600">
+                      Something went wrong. Please try again or call us directly.
+                    </p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24] disabled:opacity-60"
+                  >
+                    {submitting ? "Sending…" : `Request ${selectedAddon.label}`}
+                  </button>
+                  <p className="mt-3 text-center text-[0.6rem] text-slate-400">
+                    No commitment — we&apos;ll contact you to discuss options and pricing.
+                  </p>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

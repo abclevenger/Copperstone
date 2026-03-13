@@ -192,34 +192,34 @@ export const faqs: FAQ[] = [
       "No. Business Email is available as a standalone add-on or paired with any Copperstone plan — perfect for virtual office clients who want a complete professional identity.",
   },
   {
-    category: "Website & Hosting",
-    question: "What is the Website & Hosting add-on?",
+    category: "Website, Hosting & CRM",
+    question: "What is the Website, Hosting & CRM add-on?",
     answer:
-      "Website & Hosting is an optional add-on that gives your business a professionally designed, mobile-responsive website with managed cloud hosting, SSL security, SEO optimization, and ongoing monthly updates — starting at $150/month.",
+      "This all-in-one add-on gives your business a custom-designed website, managed cloud hosting, SSL security, and a built-in CRM to manage leads, contacts, and follow-ups — starting at $150/month.",
   },
   {
-    category: "Website & Hosting",
+    category: "Website, Hosting & CRM",
     question: "What's included in the monthly fee?",
     answer:
-      "Your monthly fee covers managed cloud hosting, SSL certificate, SEO optimization, monthly content and plugin updates, analytics reports, security monitoring, and dedicated support. There are no hidden fees or surprise charges.",
+      "Your monthly fee covers a custom website, managed hosting, SSL certificate, CRM with lead management and pipeline tracking, automated follow-ups, analytics reports, monthly updates, and dedicated support. No hidden fees.",
   },
   {
-    category: "Website & Hosting",
+    category: "Website, Hosting & CRM",
     question: "Do I own my website?",
     answer:
-      "Yes. You own all content, copy, images, and branding on your site. If you ever cancel the add-on, we'll provide a full export of your website files so you can host it elsewhere.",
+      "Yes. You own all content, copy, images, and branding on your site. If you ever cancel, we'll provide a full export of your website files so you can host it elsewhere.",
   },
   {
-    category: "Website & Hosting",
-    question: "Can I get a custom website design?",
+    category: "Website, Hosting & CRM",
+    question: "What can the CRM do?",
     answer:
-      "Absolutely. Every website is custom-designed to match your brand. More complex builds — like e-commerce, booking systems, or multi-page sites — are quoted separately based on scope.",
+      "The built-in CRM lets you capture leads from your website, track contacts through your sales pipeline, send automated follow-up emails and reminders, and view reporting on conversions — all from one dashboard.",
   },
   {
-    category: "Website & Hosting",
-    question: "Do I need an office to get Website & Hosting?",
+    category: "Website, Hosting & CRM",
+    question: "Do I need an office to get Website, Hosting & CRM?",
     answer:
-      "No. Website & Hosting is available as a standalone add-on or paired with any Copperstone plan. It's popular with virtual office clients who want a professional web presence to match their business address.",
+      "No. This add-on is available standalone or paired with any Copperstone plan. It's especially popular with virtual office clients who want a professional web presence and CRM to manage incoming leads.",
   },
   {
     category: "SEO Services",
@@ -245,6 +245,54 @@ export const faqs: FAQ[] = [
     answer:
       "No. SEO Services is available as a standalone add-on for any business. It pairs especially well with virtual office plans for businesses that want strong local search visibility in the Tampa Bay area.",
   },
+  {
+    category: "AI Receptionist",
+    question: "What is the AI Receptionist add-on?",
+    answer:
+      "AI Receptionist is an optional add-on that provides 24/7 automated call answering, intelligent routing, appointment scheduling, and message taking — so you never miss a call, even after hours. It starts at $50/month.",
+  },
+  {
+    category: "AI Receptionist",
+    question: "Can the AI Receptionist schedule appointments?",
+    answer:
+      "Yes. The AI Receptionist integrates with your calendar to book appointments, confirm availability, and send reminders — all without human intervention.",
+  },
+  {
+    category: "AI Receptionist",
+    question: "Does it replace a human receptionist?",
+    answer:
+      "It handles routine calls like scheduling, basic inquiries, and message taking 24/7. For complex requests, it routes the caller to the right person. Many clients use it alongside Copperstone's front desk reception for full coverage.",
+  },
+  {
+    category: "AI Receptionist",
+    question: "Do I need Phone Services to use AI Receptionist?",
+    answer:
+      "No. AI Receptionist works as a standalone add-on with your existing phone number. It pairs well with our Phone Services add-on for a complete communications solution, but it's not required.",
+  },
+  {
+    category: "Scan Mail",
+    question: "What is the Scan Mail service?",
+    answer:
+      "Scan Mail is a premium add-on where we open, scan, and digitally deliver your physical mail to your inbox — so you can read it from anywhere. It starts at $30/month.",
+  },
+  {
+    category: "Scan Mail",
+    question: "How quickly will I receive scanned mail?",
+    answer:
+      "Mail is typically scanned and delivered to your online portal within the same business day it's received. You'll get an email notification when new scans are ready.",
+  },
+  {
+    category: "Scan Mail",
+    question: "Can I request mail forwarding instead of scanning?",
+    answer:
+      "Yes. You can request physical mail forwarding for any item at any time. You can also instruct us to shred or recycle mail you no longer need.",
+  },
+  {
+    category: "Scan Mail",
+    question: "Is Scan Mail available with virtual office plans?",
+    answer:
+      "Absolutely — Scan Mail is one of the most popular upgrades for virtual office clients. It pairs perfectly with a professional business address, giving you full remote access to all your physical correspondence.",
+  },
 ];
 
 export const faqCategories = [
@@ -253,8 +301,10 @@ export const faqCategories = [
   "Amenities",
   "Phone Services",
   "Business Email",
-  "Website & Hosting",
+  "Website, Hosting & CRM",
   "SEO Services",
+  "AI Receptionist",
+  "Scan Mail",
   "Locations",
   "Getting Started",
   "Pricing & Billing",

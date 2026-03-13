@@ -9,6 +9,8 @@ import {
   EMAIL_ACCOUNTS,
   WEBSITE_HOSTING,
   SEO_SERVICES,
+  AI_RECEPTIONIST,
+  SCAN_MAIL,
   TRADITIONAL_OFFICE,
   formatPrice,
 } from "@/content/pricing";
@@ -76,6 +78,8 @@ export default function CostCalculator() {
   const [emailUsers, setEmailUsers] = useState(0);
   const [websiteEnabled, setWebsiteEnabled] = useState(false);
   const [seoEnabled, setSeoEnabled] = useState(false);
+  const [aiReceptionistEnabled, setAiReceptionistEnabled] = useState(false);
+  const [scanMailEnabled, setScanMailEnabled] = useState(false);
 
   const update = (id: string, val: number) =>
     setValues((prev) => ({ ...prev, [id]: val }));
@@ -148,6 +152,18 @@ export default function CostCalculator() {
         monthly: TRADITIONAL_OFFICE.seoMonthly,
       });
     }
+    if (aiReceptionistEnabled) {
+      tradBreakdown.push({
+        label: "Receptionist / Answering Service",
+        monthly: TRADITIONAL_OFFICE.aiReceptionistMonthly,
+      });
+    }
+    if (scanMailEnabled) {
+      tradBreakdown.push({
+        label: "Mail Scanning Service",
+        monthly: TRADITIONAL_OFFICE.scanMailMonthly,
+      });
+    }
 
     const tradTotal = tradBreakdown.reduce((sum, b) => sum + b.monthly, 0);
 
@@ -193,7 +209,7 @@ export default function CostCalculator() {
     }
     if (websiteEnabled) {
       copBreakdown.push({
-        label: "Website & Hosting",
+        label: "Website, Hosting & CRM",
         monthly: WEBSITE_HOSTING.startingPrice,
       });
     }
@@ -201,6 +217,18 @@ export default function CostCalculator() {
       copBreakdown.push({
         label: "SEO Services",
         monthly: SEO_SERVICES.startingPrice,
+      });
+    }
+    if (aiReceptionistEnabled) {
+      copBreakdown.push({
+        label: "AI Receptionist",
+        monthly: AI_RECEPTIONIST.startingPrice,
+      });
+    }
+    if (scanMailEnabled) {
+      copBreakdown.push({
+        label: "Scan Mail",
+        monthly: SCAN_MAIL.startingPrice,
       });
     }
 
@@ -214,7 +242,7 @@ export default function CostCalculator() {
       savings: sav,
       savingsPercent: pct,
     };
-  }, [values, phoneEnabled, phoneUsers, emailEnabled, emailUsers, websiteEnabled, seoEnabled]);
+  }, [values, phoneEnabled, phoneUsers, emailEnabled, emailUsers, websiteEnabled, seoEnabled, aiReceptionistEnabled, scanMailEnabled]);
 
   const maxCost = Math.max(traditional.total, copperstone.total, 1);
 
@@ -491,7 +519,7 @@ export default function CostCalculator() {
             </svg>
             <div>
               <p className="text-sm font-semibold text-slate-900">
-                Add Website &amp; Hosting
+                Add Website, Hosting &amp; CRM
               </p>
               <p className="mt-0.5 text-[0.68rem] text-slate-500">
                 {WEBSITE_HOSTING.shortDescription} —{" "}
@@ -567,6 +595,114 @@ export default function CostCalculator() {
             <span
               className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transition-transform ${
                 seoEnabled ? "translate-x-5" : "translate-x-0"
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* ── AI Receptionist Add-On Toggle ── */}
+      <div
+        className={`mt-4 rounded-2xl border p-5 shadow-sm transition-all sm:p-6 ${
+          aiReceptionistEnabled
+            ? "border-[#c47a3a]/30 bg-[#fffaf5]"
+            : "border-slate-200 bg-white"
+        }`}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <svg
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#c47a3a]"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+              />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-slate-900">
+                Add AI Receptionist
+              </p>
+              <p className="mt-0.5 text-[0.68rem] text-slate-500">
+                {AI_RECEPTIONIST.shortDescription} —{" "}
+                <span className="font-medium text-[#c47a3a]">
+                  {formatPrice(AI_RECEPTIONIST.startingPrice)}/mo
+                </span>
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={aiReceptionistEnabled}
+            onClick={() => setAiReceptionistEnabled(!aiReceptionistEnabled)}
+            className={`relative mt-0.5 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
+              aiReceptionistEnabled ? "bg-[#c47a3a]" : "bg-slate-200"
+            }`}
+          >
+            <span
+              className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transition-transform ${
+                aiReceptionistEnabled ? "translate-x-5" : "translate-x-0"
+              }`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* ── Scan Mail Add-On Toggle ── */}
+      <div
+        className={`mt-4 rounded-2xl border p-5 shadow-sm transition-all sm:p-6 ${
+          scanMailEnabled
+            ? "border-[#c47a3a]/30 bg-[#fffaf5]"
+            : "border-slate-200 bg-white"
+        }`}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <svg
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#c47a3a]"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 0l.879.474a2.25 2.25 0 002.171-3.938l-.879-.474m-8.839 0a2.25 2.25 0 01-2.171 0m0 0l-.879.474a2.25 2.25 0 01-2.171-3.938l.879-.474m12.01 0L21 7.19a2.25 2.25 0 00-1.423-1.423L12 3l-7.577 2.767A2.25 2.25 0 003 7.19l.261.142"
+              />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-slate-900">
+                Add Scan Mail
+              </p>
+              <p className="mt-0.5 text-[0.68rem] text-slate-500">
+                {SCAN_MAIL.shortDescription} —{" "}
+                <span className="font-medium text-[#c47a3a]">
+                  {formatPrice(SCAN_MAIL.startingPrice)}/mo
+                </span>
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={scanMailEnabled}
+            onClick={() => setScanMailEnabled(!scanMailEnabled)}
+            className={`relative mt-0.5 inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors ${
+              scanMailEnabled ? "bg-[#c47a3a]" : "bg-slate-200"
+            }`}
+          >
+            <span
+              className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transition-transform ${
+                scanMailEnabled ? "translate-x-5" : "translate-x-0"
               }`}
             />
           </button>
@@ -752,8 +888,10 @@ export default function CostCalculator() {
         Tampa Bay averages. Copperstone pricing varies by location, suite size,
         and term. Add-on pricing: Phone {formatPrice(PHONE_SERVICES.pricePerUser)}/user/mo,
         Email {formatPrice(EMAIL_ACCOUNTS.pricePerUser)}/user/mo,
-        Website {formatPrice(WEBSITE_HOSTING.startingPrice)}/mo,
-        SEO from {formatPrice(SEO_SERVICES.startingPrice)}/mo.{" "}
+        Website &amp; CRM {formatPrice(WEBSITE_HOSTING.startingPrice)}/mo,
+        SEO from {formatPrice(SEO_SERVICES.startingPrice)}/mo,
+        AI Receptionist {formatPrice(AI_RECEPTIONIST.startingPrice)}/mo,
+        Scan Mail {formatPrice(SCAN_MAIL.startingPrice)}/mo.{" "}
         <Link
           href="/contact"
           className="underline underline-offset-2 hover:text-[#c47a3a]"

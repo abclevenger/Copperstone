@@ -67,9 +67,9 @@ const checklistItems: ChecklistItem[] = [
   },
   {
     id: "website",
-    title: "Website & Hosting",
+    title: "Website, Hosting & CRM",
     description:
-      "Get a custom-designed, mobile-responsive website with managed hosting, SSL, SEO, and monthly updates — starting at $150/month.",
+      "Get a custom website with managed hosting, SSL, built-in CRM for lead management, and monthly updates — starting at $150/month.",
     icon: (
       <path
         strokeLinecap="round"
@@ -193,6 +193,32 @@ const checklistItems: ChecklistItem[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+      />
+    ),
+  },
+  {
+    id: "ai-receptionist",
+    title: "AI Receptionist",
+    description:
+      "Never miss a call with 24/7 AI-powered answering, intelligent routing, and appointment scheduling — starting at $50/month.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"
+      />
+    ),
+  },
+  {
+    id: "scan-mail",
+    title: "Scan Mail Services",
+    description:
+      "Get your physical mail opened, scanned, and delivered digitally to your inbox — access it from anywhere. Starting at $30/month.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 0l.879.474a2.25 2.25 0 002.171-3.938l-.879-.474m-8.839 0a2.25 2.25 0 01-2.171 0m0 0l-.879.474a2.25 2.25 0 01-2.171-3.938l.879-.474m12.01 0L21 7.19a2.25 2.25 0 00-1.423-1.423L12 3l-7.577 2.767A2.25 2.25 0 003 7.19l.261.142"
       />
     ),
   },

@@ -57,16 +57,16 @@ export const PHONE_SERVICES = {
 export const WEBSITE_HOSTING = {
   startingPrice: 150,
   period: "mo" as const,
-  label: "Website & Hosting",
-  tagline: "A professional website that works as hard as you do",
+  label: "Website, Hosting & CRM",
+  tagline: "Your website, hosting, and customer management in one package",
   shortDescription:
-    "Custom design, managed hosting, SSL, SEO, and ongoing updates",
+    "Custom website, managed hosting, SSL, and a built-in CRM to manage leads and customers",
   features: [
     "Custom-designed business website",
-    "Managed cloud hosting",
-    "SSL certificate & security",
-    "SEO optimization",
-    "Monthly content & plugin updates",
+    "Managed cloud hosting & SSL",
+    "Custom CRM & lead management",
+    "Contact & pipeline tracking",
+    "Automated follow-ups & reminders",
     "Analytics & performance reports",
     "Mobile-responsive design",
     "Dedicated support",
@@ -119,6 +119,49 @@ export const SEO_SERVICES = {
   volumeNote: "Custom campaigns quoted separately",
 } as const;
 
+export const AI_RECEPTIONIST = {
+  startingPrice: 50,
+  period: "mo" as const,
+  label: "AI Receptionist",
+  tagline: "Never miss a call — even after hours",
+  shortDescription:
+    "24/7 AI-powered call answering, routing, scheduling, and message taking",
+  features: [
+    "24/7 automated call answering",
+    "Intelligent call routing",
+    "Appointment scheduling",
+    "Custom greeting & hold music",
+    "Message taking & delivery",
+    "After-hours & overflow support",
+    "Caller intent detection",
+    "Monthly call summary reports",
+  ],
+  billingNote: "Flat monthly fee — no per-user charge",
+  volumeNote: "Multi-line plans available",
+} as const;
+
+export const SCAN_MAIL = {
+  startingPrice: 30,
+  period: "mo" as const,
+  label: "Scan Mail",
+  tagline: "Your physical mail, digitized and delivered to your inbox",
+  shortDescription:
+    "We open, scan, and send your mail digitally — access it from anywhere",
+  features: [
+    "Daily mail scanning & digital delivery",
+    "Envelope & content scanning",
+    "Secure online mail portal",
+    "Mail forwarding on request",
+    "Package receipt notifications",
+    "Shred or recycle on command",
+    "HIPAA-friendly handling available",
+    "Perfect for virtual office clients",
+  ],
+  billingNote: "Flat monthly fee per mailbox",
+  volumeNote: "Included with select plans",
+  badge: "Premium" as const,
+} as const;
+
 // ── Traditional Office Comparison (for Cost Calculator) ──────────────
 export const TRADITIONAL_OFFICE = {
   ratePerSqFt: 28,
@@ -133,7 +176,13 @@ export const TRADITIONAL_OFFICE = {
   websiteHostingMonthly: 300,
   emailPerUser: 30,
   seoMonthly: 500,
+  aiReceptionistMonthly: 150,
+  scanMailMonthly: 75,
 } as const;
+
+// ── Webhooks ─────────────────────────────────────────────────────────
+export const GHL_WEBHOOK =
+  "https://services.leadconnectorhq.com/hooks/mNr3aCm0bvD70r49HVTH/webhook-trigger/73c93ad0-2ad1-45f4-aff5-af3311c36646";
 
 // ── Helpers ──────────────────────────────────────────────────────────
 export function formatPrice(amount: number): string {
