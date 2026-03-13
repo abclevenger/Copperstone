@@ -158,6 +158,34 @@ export const partnerCategories: PartnerCategory[] = [
     ],
   },
   {
+    category: "Franchise Services",
+    icon: "storefront",
+    description:
+      "Launch, scale, or manage franchise operations with expert guidance on compliance, systems, and multi-location growth.",
+    services: [
+      "Franchise Development & Strategy",
+      "Franchise Compliance & FDD Review",
+      "Multi-Location Operations Setup",
+      "Franchise Marketing & Lead Gen",
+      "Territory Planning & Expansion",
+      "Franchisee Training & Onboarding",
+    ],
+  },
+  {
+    category: "Leadership & Training",
+    icon: "academic",
+    description:
+      "Develop stronger leaders and higher-performing teams with training programs, coaching, and professional development.",
+    services: [
+      "Executive & Leadership Coaching",
+      "Team Development Workshops",
+      "Management Training Programs",
+      "Strategic Planning Facilitation",
+      "Communication & Conflict Resolution",
+      "New Manager Onboarding Programs",
+    ],
+  },
+  {
     category: "Automation & Operations",
     icon: "gear",
     description:
