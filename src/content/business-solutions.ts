@@ -130,14 +130,28 @@ export const partnerCategories: PartnerCategory[] = [
     ],
   },
   {
+    category: "AI Solutions",
+    icon: "sparkles",
+    description:
+      "Harness artificial intelligence to automate tasks, engage customers, and make smarter decisions — deployed through experienced AI partners.",
+    services: [
+      "AI Chatbots & Virtual Assistants",
+      "AI-Powered Lead Generation",
+      "Content & Copywriting Automation",
+      "Predictive Analytics & Insights",
+      "Voice AI & Call Handling",
+      "Custom AI Workflow Integration",
+    ],
+  },
+  {
     category: "Automation & Operations",
     icon: "gear",
     description:
-      "Streamline how your business runs with CRM, workflow automation, and AI-powered tools.",
+      "Streamline how your business runs with CRM, workflow automation, and intelligent tools.",
     services: [
       "CRM Setup & Consulting",
       "Workflow Automation",
-      "AI & Business Automation",
+      "Business Process Automation",
       "Operational Systems Design",
     ],
   },
