@@ -318,6 +318,35 @@ export default function BusinessSolutionsPage() {
           </div>
         </section>
 
+        {/* ── Intro Video ── */}
+        <section className="mt-16 lg:mt-20">
+          <div className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 shadow-lg">
+            {/* Replace the placeholder below with your video embed */}
+            {/* Example: <video src="/intro-video.mp4" controls /> or a YouTube/Vimeo iframe */}
+            <div className="flex aspect-video flex-col items-center justify-center gap-4 bg-linear-to-br from-slate-800 to-slate-900 px-6 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#c47a3a] bg-[#c47a3a]/10 shadow-lg shadow-[#c47a3a]/20">
+                <svg
+                  className="ml-1 h-7 w-7 text-[#c47a3a]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white sm:text-base">
+                  Introduction Video Coming Soon
+                </p>
+                <p className="mt-1 text-xs text-slate-400 sm:text-sm">
+                  See what Copperstone Executive Suites has to offer — workspace,
+                  community, and business solutions in one professional hub.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Intro Section ── */}
         <section className="mt-16 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:mt-20 lg:p-8">
           <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-900">
