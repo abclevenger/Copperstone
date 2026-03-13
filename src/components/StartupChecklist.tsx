@@ -146,41 +146,11 @@ const checklistItems: ChecklistItem[] = [
   },
 ];
 
-const interestOptions = [
-  { id: "office-space", label: "Office Space" },
-  { id: "virtual-office", label: "Virtual Office" },
-  { id: "meeting-space", label: "Meeting Space" },
-  { id: "phone-internet", label: "Phone / Internet" },
-  { id: "website-seo", label: "Website / SEO" },
-  { id: "cybersecurity-it", label: "Cybersecurity / IT" },
-  { id: "business-formation", label: "Business Formation" },
-  { id: "consulting", label: "Business Consulting" },
-];
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className ?? "h-5 w-5 text-[#c47a3a]"}
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-}
-
 const GHL_WEBHOOK =
   "https://services.leadconnectorhq.com/hooks/mNr3aCm0bvD70r49HVTH/webhook-trigger/73c93ad0-2ad1-45f4-aff5-af3311c36646";
 
 export default function StartupChecklist() {
-  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [checked, setChecked] = useState<Set<string>>(new Set());
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -189,7 +159,7 @@ export default function StartupChecklist() {
   const [error, setError] = useState(false);
 
   const toggle = (id: string) => {
-    setSelected((prev) => {
+    setChecked((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
@@ -197,16 +167,15 @@ export default function StartupChecklist() {
     });
   };
 
+  const checkedItems = checklistItems.filter((item) => checked.has(item.id));
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setError(false);
     trackCTAClick("startup_checklist_inquiry");
 
-    const interests = interestOptions
-      .filter((o) => selected.has(o.id))
-      .map((o) => o.label)
-      .join(", ");
+    const needsHelp = checkedItems.map((item) => item.title).join(", ");
 
     try {
       await fetch(GHL_WEBHOOK, {
@@ -216,7 +185,9 @@ export default function StartupChecklist() {
           name,
           email,
           phone,
-          interests,
+          needs_help_with: needsHelp,
+          items_checked: checkedItems.length,
+          total_items: checklistItems.length,
           source: "Copperstone Business Solutions – Startup Checklist",
           page_url: typeof window !== "undefined" ? window.location.href : "",
         }),
@@ -235,120 +206,183 @@ export default function StartupChecklist() {
         Business Startup Checklist
       </h2>
       <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-        Start Your Business With the Right Foundation
+        Check Off What You Need Help With
       </p>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
-        Copperstone helps entrepreneurs access the workspace, tools, and trusted
-        partners needed to launch and grow a successful business.
-      </p>
-      <p className="mt-3 max-w-3xl text-xs leading-relaxed text-slate-500 sm:text-sm">
-        New businesses often need multiple services at once — a professional
-        address, a website, a phone system, legal formation, and more.
-        Copperstone simplifies the process by helping you identify what you
-        need and connecting you with reliable partners for each step.
+        Go through the checklist below and check every item you&apos;d like
+        assistance with. When you&apos;re done, enter your contact info and
+        we&apos;ll reach out with a personalized plan.
       </p>
 
-      {/* ── Checklist Cards ── */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        {checklistItems.map((item, i) => (
+      {/* ── Progress indicator ── */}
+      <div className="mt-6 flex items-center gap-3">
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
           <div
-            key={item.id}
-            className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-[#c47a3a]/40 hover:shadow-md"
-          >
-            <div className="flex flex-col items-center gap-2">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f3c89a]/25 text-xs font-semibold text-[#a35f24]">
-                {i + 1}
-              </span>
-              <svg
-                className="h-5 w-5 shrink-0 text-[#c47a3a]"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                {item.icon}
-              </svg>
-            </div>
-            <div className="min-w-0">
-              <h3 className="text-sm font-semibold text-slate-900">
-                {item.title}
-              </h3>
-              <p className="mt-1 text-xs leading-relaxed text-slate-600">
-                {item.description}
-              </p>
-              {item.note && (
-                <p className="mt-2 rounded-lg bg-amber-50 px-3 py-1.5 text-[0.65rem] leading-relaxed text-amber-800">
-                  {item.note}
-                </p>
-              )}
-            </div>
-          </div>
-        ))}
+            className="h-full rounded-full bg-linear-to-r from-[#f3c89a] to-[#c47a3a] transition-all duration-500 ease-out"
+            style={{
+              width: `${(checked.size / checklistItems.length) * 100}%`,
+            }}
+          />
+        </div>
+        <span className="shrink-0 text-xs font-semibold text-[#c47a3a]">
+          {checked.size}/{checklistItems.length}
+        </span>
       </div>
 
-      {/* ── Lead Capture / Interest Selector ── */}
-      <div className="mt-10 rounded-3xl border border-[#d6b08a] bg-[#fffaf5] p-6 lg:p-8">
-        <h3 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-          Not Sure What Your Business Needs?
-        </h3>
-        <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
-          Select the services you&apos;re interested in and we&apos;ll follow up
-          with a personalized consultation. Copperstone will review your goals
-          and connect you with the right workspace and trusted service partners.
-        </p>
+      {/* ── Checkable Cards ── */}
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {checklistItems.map((item, i) => {
+          const isChecked = checked.has(item.id);
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => toggle(item.id)}
+              className={`group flex gap-4 rounded-2xl border p-5 text-left transition-all ${
+                isChecked
+                  ? "border-[#c47a3a] bg-[#fffaf5] shadow-md ring-1 ring-[#c47a3a]/20"
+                  : "border-slate-200 bg-white shadow-sm hover:border-[#c47a3a]/40 hover:shadow-md"
+              }`}
+              aria-pressed={isChecked}
+            >
+              {/* Checkbox */}
+              <div className="flex flex-col items-center gap-2 pt-0.5">
+                <div
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 transition-all ${
+                    isChecked
+                      ? "border-[#c47a3a] bg-[#c47a3a]"
+                      : "border-slate-300 bg-white group-hover:border-[#c47a3a]/60"
+                  }`}
+                >
+                  {isChecked && (
+                    <svg
+                      className="h-3.5 w-3.5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={3}
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 12.75l6 6 9-13.5"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <span className="text-[0.6rem] font-semibold text-slate-400">
+                  {i + 1}
+                </span>
+              </div>
 
+              {/* Content */}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <svg
+                    className={`h-4 w-4 shrink-0 transition ${
+                      isChecked ? "text-[#c47a3a]" : "text-slate-400 group-hover:text-[#c47a3a]"
+                    }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    {item.icon}
+                  </svg>
+                  <h3
+                    className={`text-sm font-semibold transition ${
+                      isChecked ? "text-[#8a4f3d]" : "text-slate-900"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+                </div>
+                <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                  {item.description}
+                </p>
+                {item.note && (
+                  <p className="mt-2 rounded-lg bg-amber-50 px-3 py-1.5 text-[0.65rem] leading-relaxed text-amber-800">
+                    {item.note}
+                  </p>
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── Contact form (appears after checking at least 1 item) ── */}
+      <div
+        className={`mt-8 overflow-hidden rounded-3xl border transition-all duration-500 ${
+          checked.size > 0
+            ? "border-[#d6b08a] bg-[#fffaf5] p-6 opacity-100 lg:p-8"
+            : "pointer-events-none max-h-0 border-transparent p-0 opacity-0"
+        }`}
+      >
         {submitted ? (
-          <div className="mt-6 rounded-2xl border border-green-200 bg-green-50 p-5 text-center">
-            <CheckIcon className="mx-auto h-8 w-8 text-green-600" />
+          <div className="rounded-2xl border border-green-200 bg-green-50 p-5 text-center">
+            <svg
+              className="mx-auto h-8 w-8 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
             <p className="mt-2 text-sm font-semibold text-green-900">
               Thank you! We&apos;ll be in touch soon.
             </p>
             <p className="mt-1 text-xs text-green-700">
-              A Copperstone team member will review your interests and reach out
-              to schedule a consultation.
+              A Copperstone team member will review what you need help with and
+              reach out to schedule a consultation.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-700">
-              I&apos;m interested in:
+          <form onSubmit={handleSubmit}>
+            <h3 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+              Great — let&apos;s get you started
+            </h3>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600">
+              You&apos;ve selected{" "}
+              <span className="font-semibold text-[#c47a3a]">
+                {checked.size} {checked.size === 1 ? "item" : "items"}
+              </span>{" "}
+              you need help with. Enter your info below and we&apos;ll follow up
+              with a personalized consultation.
             </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {interestOptions.map((opt) => {
-                const active = selected.has(opt.id);
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    onClick={() => toggle(opt.id)}
-                    className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition ${
-                      active
-                        ? "border border-[#c47a3a] bg-[#c47a3a] text-white shadow-sm"
-                        : "border border-slate-200 bg-white text-slate-700 hover:border-[#c47a3a] hover:text-[#8a4f3d]"
-                    }`}
-                    aria-pressed={active}
+
+            {/* Selected summary */}
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {checkedItems.map((item) => (
+                <span
+                  key={item.id}
+                  className="inline-flex items-center gap-1 rounded-full bg-[#c47a3a]/10 px-2.5 py-1 text-[0.68rem] font-medium text-[#8a4f3d]"
+                >
+                  <svg
+                    className="h-3 w-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.5}
+                    stroke="currentColor"
+                    aria-hidden="true"
                   >
-                    {active && (
-                      <svg
-                        className="-ml-0.5 mr-1 inline-block h-3 w-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={3}
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M4.5 12.75l6 6 9-13.5"
-                        />
-                      </svg>
-                    )}
-                    {opt.label}
-                  </button>
-                );
-              })}
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.5 12.75l6 6 9-13.5"
+                    />
+                  </svg>
+                  {item.title}
+                </span>
+              ))}
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -404,20 +438,13 @@ export default function StartupChecklist() {
               </div>
             </div>
 
-            {selected.size > 0 && (
-              <p className="mt-3 text-[0.68rem] text-slate-500">
-                Selected:{" "}
-                {interestOptions
-                  .filter((o) => selected.has(o.id))
-                  .map((o) => o.label)
-                  .join(", ")}
-              </p>
-            )}
-
             {error && (
               <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700">
                 Something went wrong. Please try again or{" "}
-                <Link href="/contact" className="font-semibold underline underline-offset-2">
+                <Link
+                  href="/contact"
+                  className="font-semibold underline underline-offset-2"
+                >
                   contact us directly
                 </Link>
                 .
@@ -427,10 +454,10 @@ export default function StartupChecklist() {
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <button
                 type="submit"
-                disabled={selected.size === 0 || submitting}
+                disabled={submitting}
                 className="inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24] disabled:opacity-50 disabled:shadow-none"
               >
-                {submitting ? "Sending…" : "Schedule a Consultation"}
+                {submitting ? "Sending…" : "Send My Checklist"}
               </button>
               <Link
                 href="/contact"
@@ -442,6 +469,13 @@ export default function StartupChecklist() {
           </form>
         )}
       </div>
+
+      {/* ── Prompt when nothing checked ── */}
+      {checked.size === 0 && (
+        <p className="mt-6 text-center text-sm text-slate-500">
+          Check the items above that you need help with to get started.
+        </p>
+      )}
 
       {/* ── Section Disclaimer ── */}
       <p className="mt-6 text-[0.65rem] leading-relaxed text-slate-400">
