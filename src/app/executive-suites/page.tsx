@@ -40,7 +40,7 @@ export default function ExecutiveSuitesPage() {
           </p>
           <p className="mt-0.5 text-xs text-amber-700">
             Join our waiting list to be first in line when a suite opens up.{" "}
-            <a href="/#contact" className="font-semibold underline underline-offset-2 hover:text-amber-900">
+            <a href="/waitlist" className="font-semibold underline underline-offset-2 hover:text-amber-900">
               Join the waitlist →
             </a>
           </p>
@@ -100,7 +100,7 @@ export default function ExecutiveSuitesPage() {
             We can also schedule a tour so you&apos;re ready to move in quickly.
           </p>
           <a
-            href="/#contact"
+            href="/waitlist"
             className="mt-3 inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-[#a35f24]/50 transition hover:from-[#edba85] hover:to-[#a35f24]"
           >
             Join the Waitlist

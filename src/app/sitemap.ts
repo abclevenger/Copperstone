@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/blog/best-office-space-land-o-lakes`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/blog/coworking-vs-executive-suite`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/blog/virtual-office-tampa-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/waitlist`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/workspace-finder`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/cost-calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/faqs`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },

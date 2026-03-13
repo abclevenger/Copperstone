@@ -42,7 +42,7 @@ const tiers: Tier[] = [
       "Conference room access",
     ],
     cta: "Join the Waitlist",
-    href: "/#contact",
+    href: "/waitlist",
     featured: true,
     badge: "Waitlist Only",
   },

@@ -10,6 +10,7 @@ const quickLinks = [
   { href: "/business-solutions", label: "Business Solutions" },
   { href: "/training", label: "Training & Classes" },
   { href: "/executive-suites", label: "Executive Suites" },
+  { href: "/waitlist", label: "Join the Waitlist" },
   { href: "/workspace-finder", label: "Workspace Finder" },
   { href: "/cost-calculator", label: "Cost Calculator" },
   { href: "/faqs", label: "FAQs" },
