@@ -167,6 +167,36 @@ export const faqs: FAQ[] = [
     answer:
       "No. Phone Services is available as a standalone add-on or paired with any Copperstone plan — executive suite, virtual office, coworking, or meeting space membership.",
   },
+  {
+    category: "Website & Hosting",
+    question: "What is the Website & Hosting add-on?",
+    answer:
+      "Website & Hosting is an optional add-on that gives your business a professionally designed, mobile-responsive website with managed cloud hosting, SSL security, SEO optimization, and ongoing monthly updates — starting at $150/month.",
+  },
+  {
+    category: "Website & Hosting",
+    question: "What's included in the monthly fee?",
+    answer:
+      "Your monthly fee covers managed cloud hosting, SSL certificate, SEO optimization, monthly content and plugin updates, analytics reports, security monitoring, and dedicated support. There are no hidden fees or surprise charges.",
+  },
+  {
+    category: "Website & Hosting",
+    question: "Do I own my website?",
+    answer:
+      "Yes. You own all content, copy, images, and branding on your site. If you ever cancel the add-on, we'll provide a full export of your website files so you can host it elsewhere.",
+  },
+  {
+    category: "Website & Hosting",
+    question: "Can I get a custom website design?",
+    answer:
+      "Absolutely. Every website is custom-designed to match your brand. More complex builds — like e-commerce, booking systems, or multi-page sites — are quoted separately based on scope.",
+  },
+  {
+    category: "Website & Hosting",
+    question: "Do I need an office to get Website & Hosting?",
+    answer:
+      "No. Website & Hosting is available as a standalone add-on or paired with any Copperstone plan. It's popular with virtual office clients who want a professional web presence to match their business address.",
+  },
 ];
 
 export const faqCategories = [
@@ -174,6 +204,7 @@ export const faqCategories = [
   "Spaces & Services",
   "Amenities",
   "Phone Services",
+  "Website & Hosting",
   "Locations",
   "Getting Started",
   "Pricing & Billing",

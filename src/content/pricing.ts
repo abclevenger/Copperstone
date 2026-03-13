@@ -54,6 +54,27 @@ export const PHONE_SERVICES = {
   maxUsers: 100,
 } as const;
 
+export const WEBSITE_HOSTING = {
+  startingPrice: 150,
+  period: "mo" as const,
+  label: "Website & Hosting",
+  tagline: "A professional website that works as hard as you do",
+  shortDescription:
+    "Custom design, managed hosting, SSL, SEO, and ongoing updates",
+  features: [
+    "Custom-designed business website",
+    "Managed cloud hosting",
+    "SSL certificate & security",
+    "SEO optimization",
+    "Monthly content & plugin updates",
+    "Analytics & performance reports",
+    "Mobile-responsive design",
+    "Dedicated support",
+  ],
+  billingNote: "Flat monthly fee — no per-user charge",
+  volumeNote: "Custom builds quoted separately",
+} as const;
+
 // ── Traditional Office Comparison (for Cost Calculator) ──────────────
 export const TRADITIONAL_OFFICE = {
   ratePerSqFt: 28,
@@ -65,6 +86,7 @@ export const TRADITIONAL_OFFICE = {
   insuranceMonthly: 200,
   meetingRoomRate: 75,
   phonePerUser: 45,
+  websiteHostingMonthly: 300,
 } as const;
 
 // ── Helpers ──────────────────────────────────────────────────────────

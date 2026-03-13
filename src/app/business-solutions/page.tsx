@@ -44,6 +44,7 @@ const solutionsSchema = {
     "Phone Services",
     "Business Phone Systems",
     "Business Messaging & Communications",
+    "Website & Hosting",
     "Website Design",
     "SEO Services",
     "Cybersecurity Solutions",

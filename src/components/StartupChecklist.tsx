@@ -67,9 +67,9 @@ const checklistItems: ChecklistItem[] = [
   },
   {
     id: "website",
-    title: "Website & Online Presence",
+    title: "Website & Hosting",
     description:
-      "Professional website development and digital presence services to help customers find and trust your business online.",
+      "Get a custom-designed, mobile-responsive website with managed hosting, SSL, SEO, and monthly updates — starting at $150/month.",
     icon: (
       <path
         strokeLinecap="round"

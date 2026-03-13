@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PRICING, PHONE_SERVICES, formatPrice } from "@/content/pricing";
+import { PRICING, PHONE_SERVICES, WEBSITE_HOSTING, formatPrice } from "@/content/pricing";
 
 type Tier = {
   name: string;
@@ -219,8 +219,70 @@ export default function PricingSection() {
         </div>
       </div>
 
+      {/* ── Website & Hosting Add-On ── */}
+      <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
+        <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f3c89a]/20">
+              <svg
+                className="h-6 w-6 text-[#c47a3a]"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
+                />
+              </svg>
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-sm font-semibold text-slate-900">
+                  {WEBSITE_HOSTING.label}
+                </p>
+                <span className="rounded-full bg-[#f3c89a]/30 px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-wide text-[#a35f24]">
+                  Add-On
+                </span>
+              </div>
+              <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                {WEBSITE_HOSTING.tagline}. {WEBSITE_HOSTING.shortDescription}.
+              </p>
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                {WEBSITE_HOSTING.features.slice(0, 4).map((f) => (
+                  <span key={f} className="flex items-center gap-1 text-[0.68rem] text-slate-600">
+                    <CheckIcon />
+                    {f}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="shrink-0 text-center sm:text-right">
+            <div className="flex items-baseline justify-center gap-1 sm:justify-end">
+              <span className="text-2xl font-semibold text-slate-900">
+                {formatPrice(WEBSITE_HOSTING.startingPrice)}
+              </span>
+              <span className="text-xs text-slate-500">/mo</span>
+            </div>
+            <p className="mt-0.5 text-[0.62rem] text-slate-500">
+              {WEBSITE_HOSTING.volumeNote}
+            </p>
+            <Link
+              href="/#contact"
+              className="mt-3 inline-flex items-center justify-center rounded-full border border-[#c47a3a] bg-linear-to-b from-[#f3c89a] to-[#c47a3a] px-5 py-2 text-xs font-semibold text-white shadow-md shadow-[#a35f24]/40 transition hover:from-[#edba85] hover:to-[#a35f24]"
+            >
+              Add to Your Plan
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <p className="mt-4 text-center text-[0.68rem] text-slate-500">
-        Prices vary by location, suite size, and term length. Phone Services billed per enabled user.{" "}
+        Prices vary by location, suite size, and term length. Phone Services billed per enabled user. Website &amp; Hosting billed as a flat monthly fee.{" "}
         <Link href="/#contact" className="font-semibold text-[#c47a3a] underline underline-offset-2">
           Contact us for a custom quote.
         </Link>
