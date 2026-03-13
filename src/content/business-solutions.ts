@@ -130,6 +130,20 @@ export const partnerCategories: PartnerCategory[] = [
     ],
   },
   {
+    category: "Software & Applications",
+    icon: "code",
+    description:
+      "Find, implement, and customize the right software for your business — from off-the-shelf tools to custom-built applications.",
+    services: [
+      "Business Software Selection & Setup",
+      "Custom Application Development",
+      "SaaS & Cloud Platform Integration",
+      "Accounting & ERP Software",
+      "Project Management Tools",
+      "Industry-Specific Software Solutions",
+    ],
+  },
+  {
     category: "AI Solutions",
     icon: "sparkles",
     description:
