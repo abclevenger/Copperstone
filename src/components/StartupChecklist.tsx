@@ -154,6 +154,10 @@ export default function StartupChecklist() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [employees, setEmployees] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [notes, setNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
@@ -185,6 +189,10 @@ export default function StartupChecklist() {
           name,
           email,
           phone,
+          employees: employees || "Not specified",
+          budget: budget || "Not specified",
+          timeline: timeline || "Not specified",
+          notes: notes || "",
           needs_help_with: needsHelp,
           items_checked: checkedItems.length,
           total_items: checklistItems.length,
@@ -385,13 +393,14 @@ export default function StartupChecklist() {
               ))}
             </div>
 
+            {/* Contact info */}
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div>
                 <label
                   htmlFor="checklist-name"
                   className="block text-xs font-medium text-slate-700"
                 >
-                  Name
+                  Name <span className="text-red-400">*</span>
                 </label>
                 <input
                   id="checklist-name"
@@ -408,7 +417,7 @@ export default function StartupChecklist() {
                   htmlFor="checklist-email"
                   className="block text-xs font-medium text-slate-700"
                 >
-                  Email
+                  Email <span className="text-red-400">*</span>
                 </label>
                 <input
                   id="checklist-email"
@@ -436,6 +445,97 @@ export default function StartupChecklist() {
                   placeholder="(555) 123-4567"
                 />
               </div>
+            </div>
+
+            {/* Business details */}
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.12em] text-slate-700">
+              Tell us about your business
+            </p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <div>
+                <label
+                  htmlFor="checklist-employees"
+                  className="block text-xs font-medium text-slate-700"
+                >
+                  Number of Employees
+                </label>
+                <select
+                  id="checklist-employees"
+                  value={employees}
+                  onChange={(e) => setEmployees(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                >
+                  <option value="">Select…</option>
+                  <option value="Just me">Just me</option>
+                  <option value="2-5">2–5</option>
+                  <option value="6-10">6–10</option>
+                  <option value="11-25">11–25</option>
+                  <option value="26-50">26–50</option>
+                  <option value="50+">50+</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="checklist-budget"
+                  className="block text-xs font-medium text-slate-700"
+                >
+                  Monthly Budget
+                </label>
+                <select
+                  id="checklist-budget"
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                >
+                  <option value="">Select…</option>
+                  <option value="Under $500">Under $500/mo</option>
+                  <option value="$500-$1,000">$500–$1,000/mo</option>
+                  <option value="$1,000-$2,500">$1,000–$2,500/mo</option>
+                  <option value="$2,500-$5,000">$2,500–$5,000/mo</option>
+                  <option value="$5,000+">$5,000+/mo</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="checklist-timeline"
+                  className="block text-xs font-medium text-slate-700"
+                >
+                  When do you need to start?
+                </label>
+                <select
+                  id="checklist-timeline"
+                  value={timeline}
+                  onChange={(e) => setTimeline(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                >
+                  <option value="">Select…</option>
+                  <option value="ASAP">ASAP</option>
+                  <option value="Within 2 weeks">Within 2 weeks</option>
+                  <option value="Within 1 month">Within 1 month</option>
+                  <option value="1-3 months">1–3 months</option>
+                  <option value="3-6 months">3–6 months</option>
+                  <option value="Just exploring">Just exploring</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Notes / constraints */}
+            <div className="mt-3">
+              <label
+                htmlFor="checklist-notes"
+                className="block text-xs font-medium text-slate-700"
+              >
+                Anything else we should know?
+              </label>
+              <textarea
+                id="checklist-notes"
+                rows={3}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#c47a3a] focus:ring-1 focus:ring-[#c47a3a]"
+                placeholder="Budget constraints, timing issues, special requirements, number of offices needed, etc."
+              />
             </div>
 
             {error && (
